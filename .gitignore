@@ -50,3 +50,4 @@ implementacao.md
 
 # One-off scripts
 _*.py
+!**/__init__.py

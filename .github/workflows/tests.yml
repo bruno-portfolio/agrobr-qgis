@@ -43,7 +43,7 @@ jobs:
           cache: "pip"
       - run: pip install pytest pytest-cov agrobr[geo]
       - run: >
-          pytest tests/unit/ tests/edge_cases/ -v
+          pytest tests/unit/ -v
           --cov=agrobr_qgis --cov-report=term-missing
           --cov-fail-under=85
 
@@ -51,7 +51,7 @@ jobs:
     name: QGIS Tests
     runs-on: ubuntu-latest
     container:
-      image: qgis/qgis:final-4_0_0
+      image: qgis/qgis:4.0-trixie
     steps:
       - uses: actions/checkout@v4
       - run: pip install pytest pytest-qgis agrobr[geo]

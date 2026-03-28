@@ -12,7 +12,22 @@ class AgroBRPlugin:
 
         propagate_proxy()
 
+        from qgis.core import QgsApplication  # type: ignore[import-untyped]
+
+        from . import sources  # noqa: F401
+        from .processing.provider import AgroBRProvider
+
+        self._provider = AgroBRProvider()
+        QgsApplication.processingRegistry().addProvider(self._provider)  # pragma: no cover
+
     def unload(self) -> None:
+        try:
+            from qgis.core import QgsApplication  # type: ignore[import-untyped]
+
+            if hasattr(self, "_provider"):
+                QgsApplication.processingRegistry().removeProvider(self._provider)
+        except ImportError:
+            pass
         try:
             from .core.layer_builder import LayerBuilder
 

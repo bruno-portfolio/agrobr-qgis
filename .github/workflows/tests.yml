@@ -1,0 +1,58 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: pip install ruff
+      - run: ruff check agrobr_qgis/ tests/
+      - run: ruff format --check agrobr_qgis/ tests/
+
+  type-check:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: pip install mypy pandas-stubs
+      - run: mypy agrobr_qgis/
+
+  test-unit:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - run: pip install pytest pytest-cov agrobr[geo]
+      - run: >
+          pytest tests/unit/ tests/edge_cases/ -v
+          --cov=agrobr_qgis --cov-report=term-missing
+          --cov-fail-under=85
+
+  test-qgis:
+    name: QGIS Tests
+    runs-on: ubuntu-latest
+    container:
+      image: qgis/qgis:final-4_0_0
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pytest pytest-qgis agrobr[geo]
+      - run: xvfb-run pytest tests/qgis/ -v

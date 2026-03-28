@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Build / packaging
+dist/
+*.egg-info/
+build/
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+coverage*.json
+htmlcov/
+
+# Claude / AI tooling
+.claude/
+CLAUDE.md
+
+# Temporary
+tmp_*/
+nul
+
+# QGIS plugin packaging
+*.zip
+agrobr_qgis/resources_rc.py
+
+# QGIS temp files
+*.gpkg-journal
+*.gpkg-wal
+*.gpkg-shm
+
+# Planning docs (local only)
+*-spect.md
+implementacao.md
+
+# One-off scripts
+_*.py

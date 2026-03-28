@@ -54,5 +54,5 @@ jobs:
       image: qgis/qgis:4.0-trixie
     steps:
       - uses: actions/checkout@v4
-      - run: pip install --break-system-packages pytest pytest-qgis agrobr[geo]
+      - run: pip install --break-system-packages --ignore-installed pytest pytest-qgis agrobr[geo]
       - run: xvfb-run pytest tests/qgis/ -v

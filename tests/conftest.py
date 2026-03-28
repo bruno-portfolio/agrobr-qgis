@@ -1,11 +1,27 @@
 from __future__ import annotations
 
+import sys
 from unittest.mock import MagicMock
 
 import geopandas as gpd
 import pandas as pd
 import pytest
 from shapely.geometry import Point
+
+
+@pytest.fixture()
+def mock_qgis_full(monkeypatch: pytest.MonkeyPatch) -> MagicMock:
+    mock_core = MagicMock()
+    mock_core.Qgis.MessageLevel.Info = 0
+    mock_core.Qgis.MessageLevel.Warning = 1
+    mock_core.Qgis.MessageLevel.Critical = 2
+    mock_qtwidgets = MagicMock()
+    monkeypatch.setitem(sys.modules, "qgis", MagicMock())
+    monkeypatch.setitem(sys.modules, "qgis.core", mock_core)
+    monkeypatch.setitem(sys.modules, "qgis.PyQt", MagicMock())
+    monkeypatch.setitem(sys.modules, "qgis.PyQt.QtWidgets", mock_qtwidgets)
+    monkeypatch.setitem(sys.modules, "qgis.PyQt.QtCore", MagicMock())
+    return mock_qtwidgets
 
 
 @pytest.fixture(autouse=True)

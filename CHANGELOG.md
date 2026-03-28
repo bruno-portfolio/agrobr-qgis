@@ -25,3 +25,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - FetchTask (QgsTask): fetch → validate → join opcional em background, cancelamento cooperativo
 - Mock router e fixture queimadas (schema real INPE, 10 rows, inclui geom inválida + nula)
 - 151 testes unitários (Fase 1 + Fase 2)
+- Plugin lifecycle (Fase 3): classFactory, AgroBRStub, AgroBRPlugin
+- DependencyDoctor: check() via importlib + auto_install() com allowlist e sys.path fix (OSGeo4W)
+- Proxy corporativo: propagate_proxy() lê QgsSettings e seta HTTP_PROXY/HTTPS_PROXY
+- AgroBRPlugin skeleton: initGui() chama propagate_proxy(), unload() chama cleanup_temp()
+- AgroBRStub: QMessageBox.warning + Logger.error quando agrobr não está instalado
+- 170 testes unitários (Fase 1 + Fase 2 + Fase 3)

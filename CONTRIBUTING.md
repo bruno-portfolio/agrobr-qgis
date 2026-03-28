@@ -47,7 +47,7 @@ pytest tests/unit/ tests/edge_cases/ --cov=agrobr_qgis   # With coverage
 QGIS tests require Docker:
 
 ```bash
-docker run --rm -v $(pwd):/workspace qgis/qgis:final-4_0_0 bash -c \
+docker run --rm -v $(pwd):/workspace qgis/qgis:4.0-trixie bash -c \
   "pip install pytest pytest-qgis agrobr[geo] && xvfb-run pytest /workspace/tests/qgis/ -v"
 ```
 

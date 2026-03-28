@@ -34,3 +34,9 @@ class AgroBRPlugin:
             LayerBuilder.cleanup_temp()
         except ImportError:
             pass
+        try:
+            from .core.spatial_join import SpatialJoin
+
+            SpatialJoin.clear_cache()
+        except ImportError:
+            pass

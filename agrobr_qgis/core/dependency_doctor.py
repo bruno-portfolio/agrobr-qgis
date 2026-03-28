@@ -4,6 +4,8 @@ import importlib
 import site
 import subprocess
 import sys
+import threading
+from collections.abc import Callable
 from dataclasses import dataclass
 
 
@@ -39,22 +41,10 @@ class DependencyDoctor:
 
         try:
             subprocess.check_call(
-                [
-                    sys.executable,
-                    "-m",
-                    "pip",
-                    "install",
-                    f"{cls.REQUIRED}[{cls.EXTRAS}]",
-                    "--user",
-                    "--quiet",
-                ],
+                cls._pip_command(),
                 timeout=120,
             )
-            user_site = site.getusersitepackages()
-            if user_site not in sys.path:
-                sys.path.insert(0, user_site)
-
-            importlib.invalidate_caches()
+            cls._refresh_imports()
             return cls.check()
         except FileNotFoundError:
             return DependencyStatus(
@@ -75,3 +65,34 @@ class DependencyDoctor:
                 version=None,
                 message="Timeout na instalação. Verifique conexão e tente manualmente.",
             )
+
+    @classmethod
+    def auto_install_async(
+        cls,
+        callback: Callable[[DependencyStatus], None],
+    ) -> None:
+        def _run() -> None:
+            status = cls.auto_install()
+            callback(status)
+
+        thread = threading.Thread(target=_run, daemon=True)
+        thread.start()
+
+    @classmethod
+    def _pip_command(cls) -> list[str]:
+        return [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            f"{cls.REQUIRED}[{cls.EXTRAS}]",
+            "--user",
+            "--quiet",
+        ]
+
+    @staticmethod
+    def _refresh_imports() -> None:
+        user_site = site.getusersitepackages()
+        if user_site not in sys.path:
+            sys.path.insert(0, user_site)
+        importlib.invalidate_caches()

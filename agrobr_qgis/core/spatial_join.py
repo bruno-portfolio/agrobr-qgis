@@ -9,15 +9,13 @@ from typing import ClassVar
 import geopandas as gpd
 import pandas as pd
 
-from .constants import MUNICIPAL_MESH_SHA256, MUNICIPAL_MESH_URL, UF_MESH_URL
+from .constants import MUNICIPAL_MESH_SHA256, MUNICIPAL_MESH_URL, UF_MESH_SHA256, UF_MESH_URL
 from .exceptions import ChecksumError
 from .logger import Logger
 
 
 class SpatialJoin:
     CACHE_DIR: ClassVar[Path] = Path.home() / ".agrobr" / "meshes"
-    MUNICIPAL_FILENAME: ClassVar[str] = "municipios_simplificado.gpkg"
-    UF_FILENAME: ClassVar[str] = "ufs_simplificado.gpkg"
     _mesh_lock: ClassVar[threading.Lock] = threading.Lock()
     _mesh_cache: ClassVar[dict[str, gpd.GeoDataFrame]] = {}
 
@@ -29,7 +27,7 @@ class SpatialJoin:
         value_cols: list[str] | None = None,
         agg: str = "sum",
     ) -> gpd.GeoDataFrame:
-        mesh = cls._get_mesh(cls.MUNICIPAL_FILENAME, MUNICIPAL_MESH_URL, MUNICIPAL_MESH_SHA256)
+        mesh = cls._get_mesh(MUNICIPAL_MESH_URL, MUNICIPAL_MESH_SHA256)
 
         if value_cols and df[join_col].duplicated().any():
             df = df.groupby(join_col, as_index=False)[value_cols].agg(agg)
@@ -50,7 +48,7 @@ class SpatialJoin:
 
     @classmethod
     def to_uf(cls, df: pd.DataFrame, join_col: str) -> gpd.GeoDataFrame:
-        mesh = cls._get_mesh(cls.UF_FILENAME, UF_MESH_URL, expected_sha256=None)
+        mesh = cls._get_mesh(UF_MESH_URL, UF_MESH_SHA256)
 
         df = df.copy()
         df[join_col] = df[join_col].astype(str)
@@ -59,7 +57,8 @@ class SpatialJoin:
         return result
 
     @classmethod
-    def _get_mesh(cls, filename: str, url: str, expected_sha256: str | None) -> gpd.GeoDataFrame:
+    def _get_mesh(cls, url: str, expected_sha256: str) -> gpd.GeoDataFrame:
+        filename = url.rsplit("/", 1)[1]
         with cls._mesh_lock:
             if filename in cls._mesh_cache:
                 return cls._mesh_cache[filename]
@@ -67,9 +66,9 @@ class SpatialJoin:
             cache_path = cls.CACHE_DIR / filename
             if not cache_path.exists():
                 cls.CACHE_DIR.mkdir(parents=True, exist_ok=True)
-                cls._download(url, cache_path)
-                if expected_sha256:
-                    cls._validate_checksum(cache_path, expected_sha256)
+                cls._download_and_verify(url, cache_path, expected_sha256)
+            else:
+                cls._validate_checksum(cache_path, expected_sha256)
 
             gdf: gpd.GeoDataFrame = gpd.read_file(cache_path)
             for col in ["CD_MUN", "CD_UF"]:
@@ -79,9 +78,17 @@ class SpatialJoin:
             return gdf
 
     @classmethod
-    def _download(cls, url: str, dest: Path) -> None:
-        with urllib.request.urlopen(url, timeout=60) as response:  # noqa: S310
-            dest.write_bytes(response.read())
+    def _download_and_verify(cls, url: str, dest: Path, expected_sha256: str) -> None:
+        sha = hashlib.sha256()
+        with urllib.request.urlopen(url, timeout=120) as response, dest.open("wb") as f:  # noqa: S310
+            while chunk := response.read(65_536):
+                f.write(chunk)
+                sha.update(chunk)
+        if sha.hexdigest() != expected_sha256:
+            dest.unlink()
+            raise ChecksumError(
+                f"Checksum da malha inválido: {sha.hexdigest()} (esperado: {expected_sha256})"
+            )
 
     @staticmethod
     def _validate_checksum(path: Path, expected: str) -> None:
@@ -89,3 +96,7 @@ class SpatialJoin:
         if actual != expected:
             path.unlink()
             raise ChecksumError(f"Checksum da malha inválido: {actual} (esperado: {expected})")
+
+    @classmethod
+    def clear_cache(cls) -> None:
+        cls._mesh_cache.clear()

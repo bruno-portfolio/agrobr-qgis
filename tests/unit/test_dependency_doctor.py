@@ -3,6 +3,7 @@ from __future__ import annotations
 import importlib
 import subprocess
 import sys
+import threading
 from unittest.mock import MagicMock
 
 import pytest
@@ -68,3 +69,31 @@ class TestDependencyDoctorAutoInstall:
         result = DependencyDoctor.auto_install()
         assert result.installed is False
         assert "código 1" in result.message
+
+
+class TestAutoInstallAsync:
+    def test_callback_receives_status(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        mock_agrobr = MagicMock()
+        mock_agrobr.__version__ = "1.0.0"
+        monkeypatch.setitem(sys.modules, "agrobr", mock_agrobr)
+        monkeypatch.setattr(subprocess, "check_call", lambda *_a, **_kw: None)
+
+        received: list[object] = []
+        done = threading.Event()
+
+        def _cb(status: object) -> None:
+            received.append(status)
+            done.set()
+
+        DependencyDoctor.auto_install_async(_cb)
+        assert done.wait(timeout=5)
+        assert len(received) == 1
+        assert received[0].installed is True  # type: ignore[union-attr]
+
+
+class TestPipCommand:
+    def test_contains_package_and_extras(self) -> None:
+        cmd = DependencyDoctor._pip_command()
+        assert "agrobr[geo]" in cmd
+        assert "--user" in cmd
+        assert "--quiet" in cmd

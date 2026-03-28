@@ -111,6 +111,13 @@ class TestValidateChecksum:
         assert not f.exists()
 
 
+class TestClearCache:
+    def test_clear_cache_empties_dict(self) -> None:
+        SpatialJoin._mesh_cache["test"] = _mock_mesh_municipal()
+        SpatialJoin.clear_cache()
+        assert len(SpatialJoin._mesh_cache) == 0
+
+
 class TestLockExists:
     def test_mesh_lock_is_threading_lock(self) -> None:
         assert type(SpatialJoin._mesh_lock) is type(threading.Lock())

@@ -45,16 +45,19 @@ class FetchTask(QgsTask):  # type: ignore[misc]
             if self.isCanceled():
                 return False
 
+            self.setProgress(10)
             raw = self.source.fetch(geo=self.geo, **self.params)
 
             if self.isCanceled():
                 return False
 
+            self.setProgress(60)
             self._contract_result = DataContract.validate(raw)
 
             if self.isCanceled():
                 return False
 
+            self.setProgress(80)
             if (
                 self.join_municipal
                 and not self._contract_result.has_geometry
@@ -67,6 +70,7 @@ class FetchTask(QgsTask):  # type: ignore[misc]
                     geo_df = SpatialJoin.to_municipal(self._contract_result.df, join_col)
                     self._contract_result = DataContract.validate(geo_df)
 
+            self.setProgress(100)
             return True
 
         except Exception as e:

@@ -20,7 +20,34 @@ class AgroBRPlugin:
         self._provider = AgroBRProvider()
         QgsApplication.processingRegistry().addProvider(self._provider)  # pragma: no cover
 
+        from qgis.PyQt.QtWidgets import QAction  # type: ignore[import-untyped]
+
+        from .core.logger import Logger
+        from .gui.dock import MainDock
+
+        self._logger = Logger(self.iface)
+        self._dock = MainDock(self.iface)
+
+        from qgis.PyQt.QtCore import Qt  # type: ignore[import-untyped]
+
+        self.iface.addDockWidget(  # pragma: no cover
+            Qt.DockWidgetArea.RightDockWidgetArea, self._dock.dock_widget
+        )
+
+        icon = QgsApplication.getThemeIcon("/mIconRaster.svg")
+        self._action = QAction(icon, "AgroBR", self.iface.mainWindow())
+        self._action.triggered.connect(lambda: self._dock.setVisible(True))
+        self.iface.addToolBarIcon(self._action)  # pragma: no cover
+        self.iface.addPluginToMenu("&AgroBR", self._action)  # pragma: no cover
+
     def unload(self) -> None:
+        if hasattr(self, "_dock"):
+            self._dock.close()
+            self.iface.removeDockWidget(self._dock.dock_widget)  # pragma: no cover
+            self._dock.dock_widget.deleteLater()
+        if hasattr(self, "_action"):
+            self.iface.removeToolBarIcon(self._action)  # pragma: no cover
+            self.iface.removePluginFromMenu("&AgroBR", self._action)  # pragma: no cover
         try:
             from qgis.core import QgsApplication  # type: ignore[import-untyped]
 

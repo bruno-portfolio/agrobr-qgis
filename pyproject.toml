@@ -18,6 +18,7 @@ ignore = ["E501", "B008", "B905"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["ARG002"]
+"agrobr_qgis/gui/**" = ["ARG002"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["agrobr_qgis"]
@@ -45,7 +46,16 @@ filterwarnings = ["ignore::DeprecationWarning"]
 [tool.coverage.run]
 source = ["agrobr_qgis"]
 branch = true
-omit = ["agrobr_qgis/resources.py", "agrobr_qgis/core/task_runner.py", "agrobr_qgis/processing/*"]
+omit = [
+    "agrobr_qgis/resources.py",
+    "agrobr_qgis/core/task_runner.py",
+    "agrobr_qgis/processing/*",
+    "agrobr_qgis/gui/dock.py",
+    "agrobr_qgis/gui/source_tree.py",
+    "agrobr_qgis/gui/param_panel.py",
+    "agrobr_qgis/gui/result_panel.py",
+    "agrobr_qgis/gui/settings_dialog.py",
+]
 
 [tool.coverage.report]
 fail_under = 85

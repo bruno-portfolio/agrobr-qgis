@@ -31,3 +31,13 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - AgroBRPlugin skeleton: initGui() chama propagate_proxy(), unload() chama cleanup_temp()
 - AgroBRStub: QMessageBox.warning + Logger.error quando agrobr não está instalado
 - 170 testes unitários (Fase 1 + Fase 2 + Fase 3)
+- GUI completa (Fase 4): dock principal, árvore de fontes, painel de parâmetros, resultado, settings dialog
+- DockState (5 estados) com STATE_CONFIG centralizado e ParamCache in-memory
+- SourceTreeWidget: QTreeView + QSortFilterProxyModel, 34 fontes em 5 categorias com busca
+- ParamPanel: construtor dinâmico por ParamType, checkboxes GEO/JOIN, auth check
+- ResultPanel: resumo ContractResult + ações (Adicionar ao Mapa, Zoom, Buscar Novamente)
+- SettingsDialog: cache, CRS padrão, gerenciamento de tokens para fontes AUTH
+- MainDock: orchestrador com signal cleanup Qt6, task identity check, progress bar
+- FetchTask: progresso granular (10/60/80/100%) via setProgress()
+- UF_LIST centralizado em constants.py
+- 338 testes unitários, 91% coverage

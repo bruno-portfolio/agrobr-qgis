@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from agrobr_qgis.core.constants import UF_LIST
 from agrobr_qgis.core.source_adapter import ParamType, SourceCapability
 
 PARAM_MAP: dict[ParamType, str] = {
@@ -15,36 +16,6 @@ PARAM_MAP: dict[ParamType, str] = {
     ParamType.UF: "QgsProcessingParameterEnum",
     ParamType.PRODUTO: "QgsProcessingParameterString",
 }
-
-UF_LIST: list[str] = [
-    "AC",
-    "AL",
-    "AM",
-    "AP",
-    "BA",
-    "CE",
-    "DF",
-    "ES",
-    "GO",
-    "MA",
-    "MG",
-    "MS",
-    "MT",
-    "PA",
-    "PB",
-    "PE",
-    "PI",
-    "PR",
-    "RJ",
-    "RN",
-    "RO",
-    "RR",
-    "RS",
-    "SC",
-    "SE",
-    "SP",
-    "TO",
-]
 
 
 def make_algorithm(adapter_cls: type[Any]) -> type[Any]:  # pragma: no cover

@@ -87,14 +87,17 @@ from agrobr_qgis.core.source_adapter import SourceAdapter, SourceCapability, Par
 Adding a source = creating 1 file in `agrobr_qgis/sources/`:
 
 ```python
-from agrobr.sync import my_source
+from __future__ import annotations
 
-from ..core.registry import SourceRegistry
-from ..core.source_adapter import (
+from typing import Any
+
+import pandas as pd
+
+from agrobr_qgis.core.registry import SourceRegistry
+from agrobr_qgis.core.source_adapter import (
     SourceAdapter,
     SourceCapability,
     SourceCategory,
-    SourceParameter,
 )
 
 
@@ -117,15 +120,18 @@ class MySourceSource(SourceAdapter):
     def capabilities(cls) -> SourceCapability:
         return SourceCapability.TABULAR
 
-    def fetch(self, *, geo: bool = False, **kwargs):
+    def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
+        from agrobr.sync import my_source  # type: ignore[import-untyped]
+
         return my_source.data(**kwargs)
 ```
 
 Then:
 
-1. Create a fixture in `tests/mocks/fixtures/my_source.py` (real schema, 10 rows)
-2. Add tests in `tests/unit/test_source_adapters.py`
-3. Update `CHANGELOG.md`
+1. Add the import in `agrobr_qgis/sources/__init__.py`
+2. Create a fixture in `tests/mocks/fixtures/my_source.py` (real schema, 10 rows)
+3. Add tests in `tests/unit/test_source_my_source.py`
+4. Update `CHANGELOG.md`
 
 ## Updating the municipal mesh
 

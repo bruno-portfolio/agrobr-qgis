@@ -19,4 +19,9 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - DataContract com validação NFC, duplicatas, timezone strip, CRS default, make_valid, vertex estimation
 - Logger com lazy imports para qgis.* (testável sem QGIS)
 - Hierarquia de exceções: AgroBRError → FetchError, ContractError, JoinError, AuthError, DependencyError, ChecksumError
-- 124 testes unitários cobrindo 99.5% do core
+- Primeiro adapter + pipeline (Fase 2): queimadas (INPE) como fonte piloto
+- QueimadasSource: GEO | TABULAR | TEMPORAL, fetch via agrobr.sync com lazy import
+- LayerBuilder: memory-first com GPKG fallback (threshold 50k rows / 2M vértices), TemporaryDirectory gerenciado
+- FetchTask (QgsTask): fetch → validate → join opcional em background, cancelamento cooperativo
+- Mock router e fixture queimadas (schema real INPE, 10 rows, inclui geom inválida + nula)
+- 151 testes unitários (Fase 1 + Fase 2)

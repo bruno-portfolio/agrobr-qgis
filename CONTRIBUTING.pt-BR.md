@@ -85,14 +85,17 @@ from agrobr_qgis.core.source_adapter import SourceAdapter, SourceCapability, Par
 Adicionar uma fonte = criar 1 arquivo em `agrobr_qgis/sources/`:
 
 ```python
-from agrobr.sync import minha_fonte
+from __future__ import annotations
 
-from ..core.registry import SourceRegistry
-from ..core.source_adapter import (
+from typing import Any
+
+import pandas as pd
+
+from agrobr_qgis.core.registry import SourceRegistry
+from agrobr_qgis.core.source_adapter import (
     SourceAdapter,
     SourceCapability,
     SourceCategory,
-    SourceParameter,
 )
 
 
@@ -115,15 +118,18 @@ class MinhaFonteSource(SourceAdapter):
     def capabilities(cls) -> SourceCapability:
         return SourceCapability.TABULAR
 
-    def fetch(self, *, geo: bool = False, **kwargs):
+    def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
+        from agrobr.sync import minha_fonte  # type: ignore[import-untyped]
+
         return minha_fonte.dados(**kwargs)
 ```
 
 Depois:
 
-1. Criar fixture em `tests/mocks/fixtures/minha_fonte.py` (schema real, 10 rows)
-2. Adicionar testes em `tests/unit/test_source_adapters.py`
-3. Atualizar `CHANGELOG.md`
+1. Adicionar import em `agrobr_qgis/sources/__init__.py`
+2. Criar fixture em `tests/mocks/fixtures/minha_fonte.py` (schema real, 10 rows)
+3. Adicionar testes em `tests/unit/test_source_minha_fonte.py`
+4. Atualizar `CHANGELOG.md`
 
 ## Atualizando a malha municipal
 

@@ -34,6 +34,8 @@ class DataContract:
                 warnings=["Resultado vazio"],
             )
 
+        data = data.copy()
+
         data.columns = pd.Index(
             [unicodedata.normalize("NFC", c) if isinstance(c, str) else c for c in data.columns]
         )

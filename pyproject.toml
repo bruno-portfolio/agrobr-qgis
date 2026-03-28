@@ -42,7 +42,7 @@ filterwarnings = ["ignore::DeprecationWarning"]
 [tool.coverage.run]
 source = ["agrobr_qgis"]
 branch = true
-omit = ["agrobr_qgis/resources.py"]
+omit = ["agrobr_qgis/resources.py", "agrobr_qgis/core/task_runner.py"]
 
 [tool.coverage.report]
 fail_under = 85

@@ -147,12 +147,13 @@ class TestFetchTask:
     def test_agrobr_log_level_set_during_run(self) -> None:
         from agrobr_qgis.core.task_runner import FetchTask
 
-        original = os.environ.get("AGROBR_LOG_LEVEL")
-        source = _GeoSource()
-        task = FetchTask(source, {})
+        captured: list[str | None] = []
+
+        class _SpySource(_GeoSource):
+            def fetch(self, *, geo: bool = False, **_kwargs: Any) -> pd.DataFrame:
+                captured.append(os.environ.get("AGROBR_LOG_LEVEL"))
+                return super().fetch(geo=geo)
+
+        task = FetchTask(_SpySource(), {})
         task.run()
-        assert os.environ.get("AGROBR_LOG_LEVEL") == "WARNING"
-        if original is None:
-            os.environ.pop("AGROBR_LOG_LEVEL", None)
-        else:
-            os.environ["AGROBR_LOG_LEVEL"] = original
+        assert captured == ["WARNING"]

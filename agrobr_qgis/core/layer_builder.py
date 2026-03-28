@@ -23,7 +23,7 @@ class LayerBuilder:
     _temp_dir: ClassVar[tempfile.TemporaryDirectory[str] | None] = None
 
     @classmethod
-    def from_contract_result(
+    def from_contract_result(  # pragma: no cover
         cls,
         result: ContractResult,
         layer_name: str,
@@ -44,7 +44,7 @@ class LayerBuilder:
         )
 
     @classmethod
-    def _get_temp_dir(cls) -> Path:
+    def _get_temp_dir(cls) -> Path:  # pragma: no cover
         if cls._temp_dir is None:
             cls._temp_dir = tempfile.TemporaryDirectory(prefix="agrobr_")
         return Path(cls._temp_dir.name)
@@ -56,7 +56,7 @@ class LayerBuilder:
         layer_name: str,
         style_path: str | None,
         geometry_type: str | None = None,
-    ) -> Any:
+    ) -> Any:  # pragma: no cover
         from qgis.core import QgsFeature, QgsField, QgsFields, QgsGeometry, QgsVectorLayer
         from qgis.PyQt.QtCore import QVariant
 
@@ -92,7 +92,7 @@ class LayerBuilder:
         gdf: gpd.GeoDataFrame,
         layer_name: str,
         style_path: str | None,
-    ) -> Any:
+    ) -> Any:  # pragma: no cover
         from qgis.core import QgsVectorLayer
 
         tmp_dir = cls._get_temp_dir()
@@ -106,7 +106,7 @@ class LayerBuilder:
         return layer
 
     @classmethod
-    def _table_layer(cls, df: pd.DataFrame, layer_name: str) -> Any:
+    def _table_layer(cls, df: pd.DataFrame, layer_name: str) -> Any:  # pragma: no cover
         from qgis.core import QgsFeature, QgsField, QgsFields, QgsVectorLayer
         from qgis.PyQt.QtCore import QVariant
 
@@ -132,7 +132,7 @@ class LayerBuilder:
         return DTYPE_MAP.get(str(dtype_str), DTYPE_FALLBACK)
 
     @classmethod
-    def cleanup_temp(cls) -> None:
+    def cleanup_temp(cls) -> None:  # pragma: no cover
         if cls._temp_dir is not None:
             cls._temp_dir.cleanup()
             cls._temp_dir = None

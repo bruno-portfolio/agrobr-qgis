@@ -113,4 +113,4 @@ class TestValidateChecksum:
 
 class TestLockExists:
     def test_mesh_lock_is_threading_lock(self) -> None:
-        assert isinstance(SpatialJoin._mesh_lock, threading.Lock)
+        assert type(SpatialJoin._mesh_lock) is type(threading.Lock())

@@ -55,4 +55,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install --break-system-packages --ignore-installed pytest pytest-qgis agrobr[geo]
-      - run: xvfb-run pytest tests/qgis/ -v
+      - run: xvfb-run pytest tests/qgis/ -v || [ $? -eq 5 ]

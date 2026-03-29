@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import threading
 import time
 from dataclasses import dataclass
 from typing import ClassVar, Literal
@@ -22,10 +23,12 @@ class HealthStatus:
 class HealthCache:
     TTL_SECONDS: ClassVar[int] = 1800
     _cache: ClassVar[dict[str, HealthStatus]] = {}
+    _lock: ClassVar[threading.Lock] = threading.Lock()
 
     @classmethod
     def get(cls, source_id: str) -> HealthStatus:
-        cached = cls._cache.get(source_id)
+        with cls._lock:
+            cached = cls._cache.get(source_id)
         if (
             cached
             and cached.checked_at is not None
@@ -36,18 +39,21 @@ class HealthCache:
 
     @classmethod
     def set(cls, status: HealthStatus) -> None:
-        cls._cache[status.source_id] = status
+        with cls._lock:
+            cls._cache[status.source_id] = status
 
     @classmethod
     def is_stale(cls, source_id: str) -> bool:
-        cached = cls._cache.get(source_id)
+        with cls._lock:
+            cached = cls._cache.get(source_id)
         if cached is None or cached.checked_at is None:
             return True
         return (time.monotonic() - cached.checked_at) >= cls.TTL_SECONDS
 
     @classmethod
     def clear(cls) -> None:
-        cls._cache.clear()
+        with cls._lock:
+            cls._cache.clear()
 
 
 class HealthCheckTask(QgsTask):  # type: ignore[misc]

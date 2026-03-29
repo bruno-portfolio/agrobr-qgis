@@ -241,9 +241,7 @@ class MainDock:  # pragma: no cover
         from agrobr_qgis.core.template_runner import TemplateFetchTask
 
         params = self._param_panel.collect_params()
-        task = TemplateFetchTask(
-            self._current_template, params, geo=self._param_panel.is_geo_checked()
-        )
+        task = TemplateFetchTask(self._current_template, params, geo=True)
         self._current_template_task = task
         task.allCompleted.connect(self._on_template_result)
         task.errorOccurred.connect(lambda msg: self._on_error(None, msg))

@@ -16,6 +16,14 @@ from agrobr_qgis.core.source_adapter import (
 __all__ = ["BcbFocusSource", "BcbPtaxSource", "BcbSgsSource"]
 
 
+def _iso_to_br(kwargs: dict[str, Any]) -> dict[str, Any]:
+    for key in ("data", "data_inicial", "data_final"):
+        val = kwargs.get(key)
+        if isinstance(val, str) and len(val) == 10 and val[4] == "-":
+            kwargs[key] = f"{val[8:10]}/{val[5:7]}/{val[0:4]}"
+    return kwargs
+
+
 @SourceRegistry.register
 class BcbPtaxSource(SourceAdapter):
     @classmethod
@@ -73,7 +81,7 @@ class BcbPtaxSource(SourceAdapter):
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:  # noqa: ARG002
         from agrobr.sync import bcb  # type: ignore[import-untyped]
 
-        result: pd.DataFrame = bcb.ptax(**kwargs)
+        result: pd.DataFrame = bcb.ptax(**_iso_to_br(kwargs))
         return result
 
 
@@ -182,5 +190,5 @@ class BcbSgsSource(SourceAdapter):
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:  # noqa: ARG002
         from agrobr.sync import bcb  # type: ignore[import-untyped]
 
-        result: pd.DataFrame = bcb.sgs(**kwargs)
+        result: pd.DataFrame = bcb.sgs(**_iso_to_br(kwargs))
         return result

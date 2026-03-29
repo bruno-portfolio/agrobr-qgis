@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-MIN_AGROBR_VERSION: str = "1.0.4"
+MIN_AGROBR_VERSION: str = "1.0.5"
 DEFAULT_CRS: str = "EPSG:4674"
 FETCH_TIMEOUT_SECONDS: int = 60
 MEMORY_LAYER_MAX_VERTICES: int = 2_000_000

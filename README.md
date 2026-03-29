@@ -13,7 +13,7 @@
 
 QGIS 4 plugin that exposes [agrobr](https://pypi.org/project/agrobr/) library data as geospatial and tabular layers, with native Qt6 GUI.
 
-Centralizes 34 Brazilian agricultural data sources (IBGE, CONAB, CEPEA, INPE, IBAMA, BCB, USDA, MapBiomas, etc.) in a single plugin, eliminating manual ETL, scattered downloads, and manual joins with municipal boundaries.
+Centralizes 24 Brazilian agricultural data sources (IBGE, CONAB, INPE, IBAMA, MapBiomas, etc.) in a single plugin, eliminating manual ETL, scattered downloads, and manual joins with municipal boundaries.
 
 ## Requirements
 
@@ -52,7 +52,7 @@ Copy the `agrobr_qgis/` folder to the QGIS plugins directory:
 
 1. Enable the plugin in Plugin Manager
 2. The **agrobr** dock panel appears on the side
-3. Browse source categories (Environmental, Production, Market, Credit, Climate)
+3. Browse source categories (Environmental, Production, Land, Regulatory)
 4. Select a source, fill in parameters
 5. Click **Fetch Data**
 6. Review the summary (features, CRS, geometry type)
@@ -64,7 +64,7 @@ Wildfire hotspots (INPE), Deforestation (PRODES/DETER), FUNAI, ICMBio, INCRA, IB
 
 ### Tabular Sources
 
-CEPEA, CONAB, IBGE, BCB, USDA, B3, ZARC, Pesticides.
+CONAB, IBGE, ZARC.
 
 Tabular sources can be converted to geospatial layers via **automatic municipal join** with the IBGE boundary mesh.
 
@@ -73,7 +73,7 @@ Tabular sources can be converted to geospatial layers via **automatic municipal 
 Pre-built multi-source compositions for common workflows:
 
 - **Environmental X-Ray** — fires + deforestation + embargoes + rural properties + conservation units for a given state
-- **Production Analysis** — PAM + CONAB + CEPEA for a product
+- **Production Analysis** — PAM + CONAB for a product
 - **Climate Risk** — ZARC + PAM for a crop
 
 Select a template from the tree, fill shared parameters, and fetch all sources at once. Results are grouped in the layer tree.

@@ -13,7 +13,7 @@
 
 Plugin QGIS 4 que expõe os dados da biblioteca [agrobr](https://pypi.org/project/agrobr/) como camadas geoespaciais e tabulares, com interface gráfica nativa Qt6.
 
-Centraliza 34 fontes de dados agrícolas brasileiros (IBGE, CONAB, CEPEA, INPE, IBAMA, BCB, USDA, MapBiomas, etc.) em um único plugin, eliminando ETL manual, downloads dispersos e joins manuais com malha municipal.
+Centraliza 24 fontes de dados agrícolas brasileiros (IBGE, CONAB, INPE, IBAMA, MapBiomas, etc.) em um único plugin, eliminando ETL manual, downloads dispersos e joins manuais com malha municipal.
 
 ## Requisitos
 
@@ -52,7 +52,7 @@ Copie a pasta `agrobr_qgis/` para o diretório de plugins do QGIS:
 
 1. Ative o plugin no Plugin Manager
 2. O dock **agrobr** aparece na lateral
-3. Navegue pelas categorias de fontes (Ambiental, Produção, Mercado, Crédito, Clima)
+3. Navegue pelas categorias de fontes (Ambiental, Produção, Fundiário, Regulatório)
 4. Selecione uma fonte, preencha os parâmetros
 5. Clique **Buscar Dados**
 6. Visualize o resumo (feições, CRS, tipo de geometria)
@@ -64,7 +64,7 @@ Queimadas (INPE), Desmatamento (PRODES/DETER), FUNAI, ICMBio, INCRA, IBAMA, SICA
 
 ### Fontes Tabulares
 
-CEPEA, CONAB, IBGE, BCB, USDA, B3, ZARC, Defensivos.
+CONAB, IBGE, ZARC.
 
 Fontes tabulares podem ser convertidas em camadas geoespaciais via **join municipal automático** com a malha IBGE.
 

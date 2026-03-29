@@ -21,14 +21,9 @@ _SOURCE_MODULES = [
     "sfb",
     "mapbiomas_alerta",
     "sicar",
-    "cepea",
     "conab",
     "ibge",
-    "bcb",
-    "usda",
-    "b3",
     "zarc",
-    "defensivos",
 ]
 
 _SYNC_MODULES = [m for m in _SOURCE_MODULES if m != "sicar"]
@@ -61,7 +56,7 @@ def _register_all_sources(monkeypatch: pytest.MonkeyPatch) -> None:
 class TestAllSourcesStructural:
     def test_sources_registered(self) -> None:
         sources = SourceRegistry.list_all()
-        assert len(sources) >= 30
+        assert len(sources) >= 20
 
     def test_no_duplicate_ids(self) -> None:
         sources = SourceRegistry.list_all()

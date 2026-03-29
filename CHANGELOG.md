@@ -11,12 +11,12 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Thread-safety: `RLock` em `LayerBuilder._temp_dir` e `cleanup_temp()`, `os.environ.setdefault` para `AGROBR_LOG_LEVEL`
 - Ícone customizado do plugin (substitui ícone genérico do QGIS)
 - Estilos QML automáticos por tipo de geometria (point, polygon, line) em `styles/`
-- Animação temporal: `temporal_column()` em 6 fontes (queimadas, deter, mapbiomas, cepea, bcb_ptax, bcb_sgs)
+- Animação temporal: `temporal_column()` em 3 fontes (queimadas, deter, mapbiomas)
 - Post-fetch actions: 3 novos botões — "Abrir Tabela", "Salvar como...", "Ver Origem"
 - `source_url()` em 9 fontes com URL pública conhecida
 - Persistência de parâmetros via `QgsProject` (save/restore ao abrir projeto)
 - Health check: probe HTTP HEAD com fallback GET, ícones verde/cinza na árvore de fontes
-- `health_url()` em 5 fontes (IBGE, BCB, INPE, CEPEA)
+- `health_url()` em 3 fontes (IBGE, INPE, MapBiomas)
 - Templates multi-fonte: `ParamBinding` explícito, `TemplateRegistry` com validação em tempo de registro
 - 3 templates built-in: Raio-X Ambiental, Análise de Produção, Risco Climático
 - `TemplateFetchTask`: execução sequencial, signals só em `finished()` (thread-safe)
@@ -39,6 +39,11 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - `expandAll()` no filtro de busca desconecta `expanded` signal antes (evita burst de health checks)
 - `_on_error_internal` delegado para `_on_error` (eliminada duplicação)
 - `ParamCache._cache` não mais acessado diretamente — adicionados `to_dict()`/`from_dict()`
+
+### Removed
+- 10 fontes puramente tabulares sem dimensão geoespacial: BCB (PTAX, Focus, SGS), CEPEA, B3 (Ajustes, Histórico), USDA PSD, Defensivos (Formulados, Autorizações, Técnicos)
+- Categoria "Mercado" removida (todas as fontes eram puramente tabulares)
+- Template "Análise de Produção": removido `cepea_indicador` (fonte tabulares sem valor GIS)
 
 ### Changed
 - `dock.py`: refatorado com `FetchController` + dispatch template/source (454 linhas, era 329)

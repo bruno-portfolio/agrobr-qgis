@@ -5,8 +5,6 @@ from typing import Any
 import geopandas as gpd
 import pandas as pd
 
-from tests.mocks.fixtures.bcb import make_bcb_df
-from tests.mocks.fixtures.cepea import make_cepea_df
 from tests.mocks.fixtures.conab_safras import make_conab_safras_df
 from tests.mocks.fixtures.desmatamento import make_desmatamento_df, make_desmatamento_gdf
 from tests.mocks.fixtures.funai import make_funai_df, make_funai_gdf
@@ -21,8 +19,6 @@ from tests.mocks.fixtures.queimadas import make_queimadas_df, make_queimadas_gdf
 from tests.mocks.fixtures.zarc import make_zarc_df
 
 __all__ = [
-    "MockBcb",
-    "MockCepea",
     "MockConab",
     "MockDesmatamento",
     "MockFunai",
@@ -119,22 +115,6 @@ class MockIbge:
 
     def ppm(self, **kwargs: Any) -> pd.DataFrame:
         return make_ibge_pam_df()
-
-
-class MockCepea:
-    def indicador(self, **kwargs: Any) -> pd.DataFrame:
-        return make_cepea_df()
-
-
-class MockBcb:
-    def ptax(self, **kwargs: Any) -> pd.DataFrame:
-        return make_bcb_df()
-
-    def focus(self, **kwargs: Any) -> pd.DataFrame:
-        return make_bcb_df()
-
-    def sgs(self, **kwargs: Any) -> pd.DataFrame:
-        return make_bcb_df()
 
 
 class MockZarc:

@@ -1,6 +1,6 @@
 # Fontes de Dados
 
-O plugin agrobr disponibiliza 34 fontes de dados em 5 categorias.
+O plugin agrobr disponibiliza 24 fontes de dados em 4 categorias.
 
 ## Resumo
 
@@ -29,17 +29,7 @@ O plugin agrobr disponibiliza 34 fontes de dados em 5 categorias.
 | Safras (CONAB) | Produção | - | - | [conab.md](conab.md) |
 | Série Histórica (CONAB) | Produção | - | - | [conab.md](conab.md) |
 | CEASA Preços (CONAB) | Produção | - | - | [conab.md](conab.md) |
-| Indicadores (CEPEA) | Mercado | - | - | [cepea.md](cepea.md) |
-| PTAX (BCB) | Mercado | - | - | [bcb.md](bcb.md) |
-| Focus (BCB) | Mercado | - | - | [bcb.md](bcb.md) |
-| SGS (BCB) | Mercado | - | - | [bcb.md](bcb.md) |
-| PSD (USDA) | Mercado | - | Sim | [usda.md](usda.md) |
-| Ajustes Diários (B3) | Mercado | - | - | [b3.md](b3.md) |
-| Histórico (B3) | Mercado | - | - | [b3.md](b3.md) |
 | ZARC (MAPA) | Regulatório | Join | - | [zarc.md](zarc.md) |
-| Defensivos Formulados (MAPA) | Regulatório | - | - | [defensivos.md](defensivos.md) |
-| Autorizações de Defensivos (MAPA) | Regulatório | - | - | [defensivos.md](defensivos.md) |
-| Defensivos Técnicos (MAPA) | Regulatório | - | - | [defensivos.md](defensivos.md) |
 
 **Legenda:**
 - **Geo** = suporta saída geoespacial (marque "Saída geoespacial" no dock)
@@ -75,30 +65,19 @@ Dados de produção agrícola e pecuária.
 - [IBGE — PAM, LSPA, PPM](ibge.md)
 - [CONAB — Safras, Série Histórica, CEASA](conab.md)
 
-### Mercado (7 fontes)
+### Regulatório (1 fonte)
 
-Dados de preços, câmbio e expectativas de mercado.
-
-- [Indicadores (CEPEA)](cepea.md)
-- [BCB — PTAX, Focus, SGS](bcb.md)
-- [PSD (USDA)](usda.md)
-- [B3 — Ajustes e Histórico](b3.md)
-
-### Regulatório (4 fontes)
-
-Dados de zoneamento e defensivos agrícolas.
+Dados de zoneamento agrícola.
 
 - [ZARC (MAPA)](zarc.md)
-- [Defensivos (MAPA)](defensivos.md)
 
 ## Fontes com Autenticação
 
-Duas fontes requerem token de API:
+Uma fonte requer token de API:
 
 | Fonte | Variável | Onde obter |
 |-------|----------|------------|
 | Alertas (MapBiomas) | `MAPBIOMAS_TOKEN` | [plataforma.alerta.mapbiomas.org](https://plataforma.alerta.mapbiomas.org) |
-| PSD (USDA) | `USDA_API_KEY` | [apps.fas.usda.gov](https://apps.fas.usda.gov) |
 
 Para configurar: dock agrobr > **Configurações** > aba **Tokens**.
 

@@ -70,9 +70,6 @@ O plugin acessa os seguintes domínios (lista parcial dos principais):
 | `queimadas.dgi.inpe.br` | Focos de queimadas INPE |
 | `terrabrasilis.dpi.inpe.br` | DETER/PRODES |
 | `plataforma.alerta.mapbiomas.org` | Alertas MapBiomas |
-| `apps.fas.usda.gov` | Dados USDA PSD |
-| `olinda.bcb.gov.br` | Dados BCB (PTAX, Focus, SGS) |
-| `www.cepea.esalq.usp.br` | Indicadores CEPEA |
 | `pypi.org` | Auto-instalação da biblioteca agrobr |
 
 ### Uso Offline

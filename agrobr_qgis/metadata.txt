@@ -2,7 +2,7 @@
 name=agrobr
 qgisMinimumVersion=4.0
 description=Brazilian agricultural data in QGIS via agrobr library
-about=Plugin that exposes 34 Brazilian agricultural data sources (IBGE, CONAB, CEPEA, INPE, IBAMA, BCB, USDA, MapBiomas, etc.) as geospatial and tabular layers in QGIS, with native GUI, automatic municipal join, and Processing Toolbox integration.
+about=Plugin that exposes 24 Brazilian agricultural data sources (IBGE, CONAB, INPE, IBAMA, MapBiomas, etc.) as geospatial layers in QGIS, with native GUI, automatic municipal join, and Processing Toolbox integration.
 version=0.1.0
 author=Bruno Escalhão
 email=brunoescalhao@gmail.com
@@ -10,7 +10,7 @@ repository=https://github.com/bruno-portfolio/agrobr-qgis
 tracker=https://github.com/bruno-portfolio/agrobr-qgis/issues
 homepage=https://github.com/bruno-portfolio/agrobr-qgis
 icon=icon.png
-tags=agriculture,brazil,data,agro,ibge,conab,cepea,inpe,ibama,geospatial
+tags=agriculture,brazil,data,agro,ibge,conab,inpe,ibama,geospatial
 category=Web
 hasProcessingProvider=yes
 experimental=True

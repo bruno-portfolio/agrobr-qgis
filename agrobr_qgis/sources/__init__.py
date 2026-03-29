@@ -14,14 +14,9 @@ __all__ = [
     "sfb",
     "mapbiomas_alerta",
     "sicar",
-    "cepea",
     "conab",
     "ibge",
-    "bcb",
-    "usda",
-    "b3",
     "zarc",
-    "defensivos",
 ]
 
 for _name in __all__:

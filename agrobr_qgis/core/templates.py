@@ -49,9 +49,9 @@ TemplateRegistry.register(
     Template(
         id="analise_producao",
         name="Analise de Producao",
-        description=("PAM, serie historica CONAB e indicadores CEPEA para um produto"),
+        description="PAM e serie historica CONAB para um produto",
         category="Producao",
-        source_ids=("ibge_pam", "conab_serie_historica", "cepea_indicador"),
+        source_ids=("ibge_pam", "conab_serie_historica"),
         params=(
             TemplateParam(
                 name="produto",
@@ -62,7 +62,6 @@ TemplateRegistry.register(
                 bindings=(
                     ParamBinding("ibge_pam", "produto"),
                     ParamBinding("conab_serie_historica", "produto"),
-                    ParamBinding("cepea_indicador", "produto"),
                 ),
             ),
             TemplateParam(

@@ -5,7 +5,7 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
-## [Unreleased]
+## [0.1.0] - 2026-03-29
 
 ### Added
 - Setup inicial do projeto (Fase 0)
@@ -58,3 +58,6 @@ e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR
 - Classes renomeadas: agrobrPlugin, agrobrStub, agrobrProvider, agrobrError
 - SpatialJoin: novo método público `localidade_to_code()` para mapear nomes IBGE → códigos
 - Autor: "Bruno" → "Bruno Escalhão" em metadata.txt e pyproject.toml
+- Documentação: guia de instalação, guia por fonte (18 docs), troubleshooting
+- Contagem de fontes corrigida: 38+ → 34 (READMEs e metadata)
+- Paths de instalação corrigidos: QGIS3 → QGIS4 (READMEs)

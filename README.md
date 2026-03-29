@@ -13,7 +13,7 @@
 
 QGIS 4 plugin that exposes [agrobr](https://pypi.org/project/agrobr/) library data as geospatial and tabular layers, with native Qt6 GUI.
 
-Centralizes 38+ Brazilian agricultural data sources (IBGE, CONAB, CEPEA, INPE, IBAMA, BCB, USDA, MapBiomas, etc.) in a single plugin, eliminating manual ETL, scattered downloads, and manual joins with municipal boundaries.
+Centralizes 34 Brazilian agricultural data sources (IBGE, CONAB, CEPEA, INPE, IBAMA, BCB, USDA, MapBiomas, etc.) in a single plugin, eliminating manual ETL, scattered downloads, and manual joins with municipal boundaries.
 
 ## Requirements
 
@@ -44,9 +44,9 @@ pip install agrobr[geo]
 
 Copy the `agrobr_qgis/` folder to the QGIS plugins directory:
 
-- **Linux:** `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
-- **Windows:** `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\`
-- **macOS:** `~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/`
+- **Linux:** `~/.local/share/QGIS/QGIS4/profiles/default/python/plugins/`
+- **Windows:** `%APPDATA%\QGIS\QGIS4\profiles\default\python\plugins\`
+- **macOS:** `~/Library/Application Support/QGIS/QGIS4/profiles/default/python/plugins/`
 
 ## Usage
 

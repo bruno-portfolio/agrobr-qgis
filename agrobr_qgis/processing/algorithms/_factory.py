@@ -115,7 +115,7 @@ def make_algorithm(adapter_cls: type[Any]) -> type[Any]:  # pragma: no cover
 
             kwargs: dict[str, Any] = {}
             for param in self._adapter.parameters():
-                val = self.parameterAsString(parameters, param.name, context)
+                val = self.parameterAsString(parameters, param.name, context).strip()
                 if val:
                     kwargs[param.name] = val
 

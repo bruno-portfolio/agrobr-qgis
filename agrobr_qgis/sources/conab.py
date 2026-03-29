@@ -23,6 +23,10 @@ __all__ = [
 @SourceRegistry.register
 class ConabSafrasSource(SourceAdapter):
     @classmethod
+    def source_url(cls) -> str | None:
+        return "https://portaldeinformacoes.conab.gov.br/safra-serie-historica-graos.html"
+
+    @classmethod
     def id(cls) -> str:
         return "conab_safras"
 

@@ -23,6 +23,18 @@ class CepeaIndicadorSource(SourceAdapter):
         return "cepea_indicador"
 
     @classmethod
+    def temporal_column(cls) -> str | None:
+        return "data"
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return "https://www.cepea.esalq.usp.br/br/indicador/soja.aspx"
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://www.cepea.esalq.usp.br/br"
+
+    @classmethod
     def name(cls) -> str:
         return "Indicadores (CEPEA)"
 

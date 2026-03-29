@@ -19,6 +19,14 @@ __all__ = ["IbgeLspaSource", "IbgePamSource", "IbgePpmSource"]
 @SourceRegistry.register
 class IbgePamSource(SourceAdapter):
     @classmethod
+    def source_url(cls) -> str | None:
+        return "https://sidra.ibge.gov.br/tabela/5457"
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://servicodados.ibge.gov.br/api/v3/agregados"
+
+    @classmethod
     def id(cls) -> str:
         return "ibge_pam"
 

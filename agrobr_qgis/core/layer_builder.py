@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import tempfile
+import threading
 import time
 from pathlib import Path
 from typing import Any, ClassVar
@@ -21,6 +22,26 @@ from .data_contract import ContractResult
 
 class LayerBuilder:
     _temp_dir: ClassVar[tempfile.TemporaryDirectory[str] | None] = None
+    _temp_lock: ClassVar[threading.RLock] = threading.RLock()
+    _STYLE_MAP: ClassVar[dict[str, str]] = {
+        "Point": "point.qml",
+        "MultiPoint": "point.qml",
+        "Polygon": "polygon.qml",
+        "MultiPolygon": "polygon.qml",
+        "LineString": "line.qml",
+        "MultiLineString": "line.qml",
+    }
+    _STYLES_DIR: ClassVar[Path] = Path(__file__).parent.parent / "styles"
+
+    @classmethod
+    def resolve_style(cls, geometry_type: str | None) -> str | None:
+        if geometry_type is None:
+            return None
+        qml = cls._STYLE_MAP.get(geometry_type)
+        if qml is None:
+            return None
+        path = cls._STYLES_DIR / qml
+        return str(path) if path.exists() else None
 
     @classmethod
     def from_contract_result(  # pragma: no cover
@@ -28,13 +49,36 @@ class LayerBuilder:
         result: ContractResult,
         layer_name: str,
         style_path: str | None = None,
+        temporal_column: str | None = None,
     ) -> Any:
         if result.has_geometry:
             assert isinstance(result.df, gpd.GeoDataFrame)
             if cls._should_use_gpkg(result):
-                return cls._via_gpkg(result.df, layer_name, style_path)
-            return cls._via_memory(result.df, layer_name, style_path, result.geometry_type)
-        return cls._table_layer(result.df, layer_name)
+                layer = cls._via_gpkg(result.df, layer_name, style_path)
+            else:
+                layer = cls._via_memory(result.df, layer_name, style_path, result.geometry_type)
+        else:
+            layer = cls._table_layer(result.df, layer_name)
+        if temporal_column:
+            cls._apply_temporal(layer, result.df, temporal_column)
+        return layer
+
+    @staticmethod
+    def _apply_temporal(  # pragma: no cover
+        layer: Any, df: pd.DataFrame | gpd.GeoDataFrame, temporal_column: str
+    ) -> None:
+        if temporal_column not in df.columns:
+            return
+        if pd.api.types.is_integer_dtype(df[temporal_column]):
+            return  # ano inteiro — adiado para v1.1
+        from qgis.core import (  # type: ignore[import-untyped]
+            QgsVectorLayerTemporalProperties,
+        )
+
+        tp = layer.temporalProperties()
+        tp.setMode(QgsVectorLayerTemporalProperties.ModeFeatureDateTimeInstantFromField)
+        tp.setStartField(temporal_column)
+        tp.setIsActive(True)
 
     @staticmethod
     def _should_use_gpkg(result: ContractResult) -> bool:
@@ -45,9 +89,10 @@ class LayerBuilder:
 
     @classmethod
     def _get_temp_dir(cls) -> Path:  # pragma: no cover
-        if cls._temp_dir is None:
-            cls._temp_dir = tempfile.TemporaryDirectory(prefix="agrobr_")
-        return Path(cls._temp_dir.name)
+        with cls._temp_lock:
+            if cls._temp_dir is None:
+                cls._temp_dir = tempfile.TemporaryDirectory(prefix="agrobr_")
+            return Path(cls._temp_dir.name)
 
     @classmethod
     def _via_memory(
@@ -95,10 +140,11 @@ class LayerBuilder:
     ) -> Any:  # pragma: no cover
         from qgis.core import QgsVectorLayer
 
-        tmp_dir = cls._get_temp_dir()
-        name_seed = f"{layer_name}_{time.time()}"
-        suffix = f"_agrobr_{hashlib.md5(name_seed.encode()).hexdigest()[:8]}.gpkg"  # noqa: S324
-        tmp_path = tmp_dir / f"{layer_name}{suffix}"
+        with cls._temp_lock:
+            tmp_dir = cls._get_temp_dir()
+            name_seed = f"{layer_name}_{time.time()}"
+            suffix = f"_agrobr_{hashlib.md5(name_seed.encode()).hexdigest()[:8]}.gpkg"  # noqa: S324
+            tmp_path = tmp_dir / f"{layer_name}{suffix}"
         gdf.to_file(tmp_path, driver="GPKG")
         layer = QgsVectorLayer(str(tmp_path), layer_name, "ogr")
         if style_path:
@@ -133,6 +179,7 @@ class LayerBuilder:
 
     @classmethod
     def cleanup_temp(cls) -> None:  # pragma: no cover
-        if cls._temp_dir is not None:
-            cls._temp_dir.cleanup()
-            cls._temp_dir = None
+        with cls._temp_lock:
+            if cls._temp_dir is not None:
+                cls._temp_dir.cleanup()
+                cls._temp_dir = None

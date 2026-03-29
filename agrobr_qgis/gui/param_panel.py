@@ -21,7 +21,7 @@ class ParamPanel:  # pragma: no cover
 
     def build(
         self,
-        parameters: list[SourceParameter],
+        parameters: list[Any],
         capabilities: SourceCapability,
         source_id: str,
     ) -> None:
@@ -185,7 +185,7 @@ class ParamPanel:  # pragma: no cover
                         )
                 except AttributeError:
                     pass
-        return result
+        return {k: v.strip() if isinstance(v, str) else v for k, v in result.items()}
 
     def restore_params(self, cached: dict[str, Any]) -> None:
         from qgis.PyQt.QtCore import QDate  # type: ignore[import-untyped]

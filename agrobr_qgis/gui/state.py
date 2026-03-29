@@ -11,6 +11,7 @@ class DockState(StrEnum):
     LOADING = "loading"
     RESULT = "result"
     ERROR = "error"
+    TEMPLATE_RESULT = "template_result"
 
 
 @dataclass(frozen=True)
@@ -54,6 +55,11 @@ STATE_CONFIG: dict[DockState, WidgetVisibility] = {
         source_tree=True,
         error_label=True,
     ),
+    DockState.TEMPLATE_RESULT: WidgetVisibility(
+        search_bar=True,
+        source_tree=True,
+        result_panel=True,
+    ),
 }
 
 
@@ -72,3 +78,9 @@ class ParamCache:
             self._cache.clear()
         else:
             self._cache.pop(source_id, None)
+
+    def to_dict(self) -> dict[str, dict[str, Any]]:
+        return dict(self._cache)
+
+    def from_dict(self, data: dict[str, dict[str, Any]]) -> None:
+        self._cache = dict(data)

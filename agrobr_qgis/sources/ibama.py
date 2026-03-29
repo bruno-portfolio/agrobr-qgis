@@ -19,6 +19,10 @@ __all__ = ["EmbargosSource"]
 @SourceRegistry.register
 class EmbargosSource(SourceAdapter):
     @classmethod
+    def source_url(cls) -> str | None:
+        return "https://servicos.ibama.gov.br/ctf/publico/areasembargadas/ConsultaPublicaAreasEmbargadas.php"
+
+    @classmethod
     def id(cls) -> str:
         return "ibama_embargos"
 

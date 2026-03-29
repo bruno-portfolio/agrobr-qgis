@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 from typing import Any
 
 from qgis.core import QgsTask  # type: ignore[import-untyped]
@@ -38,10 +37,7 @@ class FetchTask(QgsTask):  # type: ignore[misc]
         self._error: Exception | None = None
 
     def run(self) -> bool:
-        original_log_level = os.environ.get("AGROBR_LOG_LEVEL")
         try:
-            os.environ["AGROBR_LOG_LEVEL"] = "WARNING"
-
             if self.isCanceled():
                 return False
 
@@ -76,11 +72,6 @@ class FetchTask(QgsTask):  # type: ignore[misc]
         except Exception as e:
             self._error = e
             return False
-        finally:
-            if original_log_level is None:
-                os.environ.pop("AGROBR_LOG_LEVEL", None)
-            else:
-                os.environ["AGROBR_LOG_LEVEL"] = original_log_level
 
     def finished(self, result: bool) -> None:
         if result and self._contract_result:

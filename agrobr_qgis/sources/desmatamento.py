@@ -32,6 +32,18 @@ class DeterSource(SourceAdapter):
         return "deter"
 
     @classmethod
+    def temporal_column(cls) -> str | None:
+        return "data_deteccao"
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return "https://terrabrasilis.dpi.inpe.br/"
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://terrabrasilis.dpi.inpe.br/geoserver/web/"
+
+    @classmethod
     def name(cls) -> str:
         return "DETER (INPE)"
 

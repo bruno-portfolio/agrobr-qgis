@@ -8,13 +8,17 @@ class agrobrPlugin:
         self.iface = iface
 
     def initGui(self) -> None:  # noqa: N802
+        import os
+
         from .core.proxy import propagate_proxy
 
         propagate_proxy()
+        os.environ.setdefault("AGROBR_LOG_LEVEL", "WARNING")
 
         from qgis.core import QgsApplication  # type: ignore[import-untyped]
 
         from . import sources  # noqa: F401
+        from .core import templates  # noqa: F401
         from .processing.provider import agrobrProvider
 
         self._provider = agrobrProvider()
@@ -34,7 +38,11 @@ class agrobrPlugin:
             Qt.DockWidgetArea.RightDockWidgetArea, self._dock.dock_widget
         )
 
-        icon = QgsApplication.getThemeIcon("/mIconRaster.svg")
+        from pathlib import Path
+
+        from qgis.PyQt.QtGui import QIcon  # type: ignore[import-untyped]
+
+        icon = QIcon(str(Path(__file__).parent / "icon.png"))
         self._action = QAction(icon, "agrobr", self.iface.mainWindow())
         self._action.triggered.connect(lambda: self._dock.setVisible(True))
         self.iface.addToolBarIcon(self._action)  # pragma: no cover

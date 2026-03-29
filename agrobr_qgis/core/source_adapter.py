@@ -95,5 +95,18 @@ class SourceAdapter(ABC):
     def join_column(cls) -> str | None:
         return None
 
+    # TODO(refactor): consolidar em SourceMeta quando > 12 classmethods
+    @classmethod
+    def temporal_column(cls) -> str | None:
+        return None
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return None
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return None
+
     @abstractmethod
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame: ...

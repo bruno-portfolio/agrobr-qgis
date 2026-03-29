@@ -19,6 +19,10 @@ __all__ = ["UcsSource"]
 @SourceRegistry.register
 class UcsSource(SourceAdapter):
     @classmethod
+    def source_url(cls) -> str | None:
+        return "https://www.gov.br/icmbio/pt-br/assuntos/biodiversidade/unidade-de-conservacao"
+
+    @classmethod
     def id(cls) -> str:
         return "icmbio_ucs"
 

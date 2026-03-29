@@ -23,6 +23,14 @@ class AlertasSource(SourceAdapter):
         return "mapbiomas_alertas"
 
     @classmethod
+    def temporal_column(cls) -> str | None:
+        return "detected_at"
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return "https://plataforma.alerta.mapbiomas.org/"
+
+    @classmethod
     def name(cls) -> str:
         return "Alertas (MapBiomas)"
 

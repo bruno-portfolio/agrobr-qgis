@@ -23,6 +23,18 @@ class BcbPtaxSource(SourceAdapter):
         return "bcb_ptax"
 
     @classmethod
+    def temporal_column(cls) -> str | None:
+        return "data"
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return "https://www.bcb.gov.br/estabilidadefinanceira/historicocotacoes"
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/1?formato=json"
+
+    @classmethod
     def name(cls) -> str:
         return "PTAX (BCB)"
 
@@ -115,6 +127,10 @@ class BcbSgsSource(SourceAdapter):
     @classmethod
     def id(cls) -> str:
         return "bcb_sgs"
+
+    @classmethod
+    def temporal_column(cls) -> str | None:
+        return "data"
 
     @classmethod
     def name(cls) -> str:

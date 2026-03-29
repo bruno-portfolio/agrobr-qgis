@@ -20,7 +20,13 @@ class ResultPanel:  # pragma: no cover
         self._add_btn = QPushButton(self._widget.tr("Adicionar ao Mapa"))
         self._zoom_btn = QPushButton(self._widget.tr("Zoom na Camada"))
         self._again_btn = QPushButton(self._widget.tr("Buscar Novamente"))
+        self._open_table_btn = QPushButton(self._widget.tr("Abrir Tabela"))
+        self._save_as_btn = QPushButton(self._widget.tr("Salvar como..."))
+        self._view_origin_btn = QPushButton(self._widget.tr("Ver Origem"))
         self._zoom_btn.setEnabled(False)
+        self._open_table_btn.setEnabled(False)
+        self._save_as_btn.setEnabled(False)
+        self._view_origin_btn.setEnabled(False)
 
     def show_result(self, result: ContractResult) -> None:
         from qgis.PyQt.QtWidgets import (  # type: ignore[import-untyped]
@@ -74,7 +80,63 @@ class ResultPanel:  # pragma: no cover
         btn_layout.addWidget(self._again_btn)
         layout.addLayout(btn_layout)
 
+        btn_layout2 = QHBoxLayout()
+        btn_layout2.addWidget(self._open_table_btn)
+        btn_layout2.addWidget(self._save_as_btn)
+        btn_layout2.addWidget(self._view_origin_btn)
+        layout.addLayout(btn_layout2)
+
         self._layout.addWidget(container)
+
+    def show_template_result(self, result: Any) -> None:
+        from qgis.PyQt.QtWidgets import (  # type: ignore[import-untyped]
+            QGroupBox,
+            QHBoxLayout,
+            QLabel,
+            QPushButton,
+            QVBoxLayout,
+            QWidget,
+        )
+
+        self._clear_content()
+        container = QWidget()
+        layout = QVBoxLayout(container)
+        layout.setContentsMargins(4, 4, 4, 4)
+
+        ok_count = len(result.succeeded)
+        fail_count = len(result.failed)
+        header = QLabel(f"{result.template_name} — {ok_count}/{ok_count + fail_count} fontes OK")
+        header.setStyleSheet("font-weight: bold;")
+        layout.addWidget(header)
+
+        for outcome in result.outcomes:
+            group = QGroupBox()
+            gl = QVBoxLayout(group)
+            if outcome.status == "ok":
+                gl.addWidget(
+                    QLabel(f"\u2713 {outcome.source_name} — {outcome.result.row_count} registros")
+                )
+            else:
+                lbl = QLabel(
+                    f"\u2717 {outcome.source_name} — {outcome.error_message or outcome.status}"
+                )
+                lbl.setStyleSheet("color: #cc0000;")
+                gl.addWidget(lbl)
+            layout.addWidget(group)
+
+        btn_layout = QHBoxLayout()
+        add_all = QPushButton(self._widget.tr("Adicionar Todos OK"))
+        add_all.setEnabled(ok_count > 0)
+        btn_layout.addWidget(add_all)
+        btn_layout.addWidget(self._again_btn)
+        layout.addLayout(btn_layout)
+
+        self._add_all_btn = add_all
+        self._layout.addWidget(container)
+
+    @property
+    def add_all_button(self) -> Any:
+        return getattr(self, "_add_all_btn", None)
 
     def _clear_content(self) -> None:
         old = self._layout.takeAt(0)
@@ -85,6 +147,11 @@ class ResultPanel:  # pragma: no cover
 
     def enable_zoom(self) -> None:
         self._zoom_btn.setEnabled(True)
+        self._open_table_btn.setEnabled(True)
+        self._save_as_btn.setEnabled(True)
+
+    def enable_origin(self) -> None:
+        self._view_origin_btn.setEnabled(True)
 
     def clear(self) -> None:
         self._clear_content()
@@ -100,6 +167,18 @@ class ResultPanel:  # pragma: no cover
     @property
     def fetch_again_button(self) -> Any:
         return self._again_btn
+
+    @property
+    def open_table_button(self) -> Any:
+        return self._open_table_btn
+
+    @property
+    def save_as_button(self) -> Any:
+        return self._save_as_btn
+
+    @property
+    def view_origin_button(self) -> Any:
+        return self._view_origin_btn
 
     @property
     def widget(self) -> Any:

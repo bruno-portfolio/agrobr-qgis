@@ -39,6 +39,18 @@ class QueimadasSource(SourceAdapter):
         return SourceCapability.GEO | SourceCapability.TABULAR | SourceCapability.TEMPORAL
 
     @classmethod
+    def temporal_column(cls) -> str | None:
+        return "data_hora_gmt"
+
+    @classmethod
+    def source_url(cls) -> str | None:
+        return "https://terrabrasilis.dpi.inpe.br/queimadas/portal/"
+
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://terrabrasilis.dpi.inpe.br/geoserver/web/"
+
+    @classmethod
     def parameters(cls) -> list[SourceParameter]:
         return [
             SourceParameter(

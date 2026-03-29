@@ -68,6 +68,16 @@ CEPEA, CONAB, IBGE, BCB, USDA, B3, ZARC, Pesticides.
 
 Tabular sources can be converted to geospatial layers via **automatic municipal join** with the IBGE boundary mesh.
 
+### Templates
+
+Pre-built multi-source compositions for common workflows:
+
+- **Environmental X-Ray** — fires + deforestation + embargoes + rural properties + conservation units for a given state
+- **Production Analysis** — PAM + CONAB + CEPEA for a product
+- **Climate Risk** — ZARC + PAM for a crop
+
+Select a template from the tree, fill shared parameters, and fetch all sources at once. Results are grouped in the layer tree.
+
 ### Processing Toolbox
 
 Each source is also available as a Processing Toolbox algorithm, enabling use in models and scripts.
@@ -80,7 +90,12 @@ Each source is also available as a Processing Toolbox algorithm, enabling use in
 - **Municipal join** — tabular data → IBGE mesh with a single checkbox
 - **Auto-validation** — CRS, invalid geometries, encoding, timezone
 - **Source search** — filter by name, description, or category
-- **Health check** — online/offline status per source
+- **Health check** — online/offline status per source on category expand
+- **Temporal animation** — temporal controller for time-series sources (fires, deforestation, commodities)
+- **Auto-styling** — default QML styles per geometry type (point, polygon, line)
+- **Templates** — multi-source compositions (Environmental X-Ray, Production Analysis, Climate Risk)
+- **Post-fetch actions** — open attribute table, save as file, view origin URL
+- **Project persistence** — parameter cache saved/restored with QGIS project
 - **Corporate proxy** — auto-propagates QGIS proxy settings
 
 ## Architecture

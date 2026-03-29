@@ -49,19 +49,13 @@ class LayerBuilder:
         result: ContractResult,
         layer_name: str,
         style_path: str | None = None,
-        temporal_column: str | None = None,
     ) -> Any:
         if result.has_geometry:
             assert isinstance(result.df, gpd.GeoDataFrame)
             if cls._should_use_gpkg(result):
-                layer = cls._via_gpkg(result.df, layer_name, style_path)
-            else:
-                layer = cls._via_memory(result.df, layer_name, style_path, result.geometry_type)
-        else:
-            layer = cls._table_layer(result.df, layer_name)
-        if temporal_column:
-            cls._apply_temporal(layer, result.df, temporal_column)
-        return layer
+                return cls._via_gpkg(result.df, layer_name, style_path)
+            return cls._via_memory(result.df, layer_name, style_path, result.geometry_type)
+        return cls._table_layer(result.df, layer_name)
 
     @staticmethod
     def _apply_temporal(  # pragma: no cover
@@ -70,7 +64,7 @@ class LayerBuilder:
         if temporal_column not in df.columns:
             return
         if pd.api.types.is_integer_dtype(df[temporal_column]):
-            return  # ano inteiro — adiado para v1.1
+            return
         from qgis.core import (  # type: ignore[import-untyped]
             QgsVectorLayerTemporalProperties,
         )

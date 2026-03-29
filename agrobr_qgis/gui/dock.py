@@ -279,10 +279,10 @@ class MainDock:  # pragma: no cover
             style_path = LayerBuilder.resolve_style(outcome.result.geometry_type)
             adapter_cls = SourceRegistry.get(outcome.source_id)
             temporal_col = adapter_cls.temporal_column() if adapter_cls else None
-            layer = LayerBuilder.from_contract_result(
-                outcome.result, layer_name, style_path, temporal_col
-            )
+            layer = LayerBuilder.from_contract_result(outcome.result, layer_name, style_path)
             QgsProject.instance().addMapLayer(layer, False)
+            if temporal_col:
+                LayerBuilder._apply_temporal(layer, outcome.result.df, temporal_col)
             group.addLayer(layer)
         self._logger.user(f"{len(self._current_template_result.succeeded)} camadas adicionadas")
 
@@ -327,8 +327,10 @@ class MainDock:  # pragma: no cover
         result = self._current_result
         style_path = LayerBuilder.resolve_style(result.geometry_type)
         temporal_col = adapter_cls.temporal_column() if adapter_cls else None
-        layer = LayerBuilder.from_contract_result(result, layer_name, style_path, temporal_col)
+        layer = LayerBuilder.from_contract_result(result, layer_name, style_path)
         QgsProject.instance().addMapLayer(layer)
+        if temporal_col:
+            LayerBuilder._apply_temporal(layer, result.df, temporal_col)
         self._added_layer = layer
         self._current_result = None
         self._result_panel.enable_zoom()
@@ -356,9 +358,28 @@ class MainDock:  # pragma: no cover
             "",
             "GeoPackage (*.gpkg);;GeoJSON (*.geojson);;Shapefile (*.shp)",
         )
-        if path:
-            QgsVectorFileWriter.writeAsVectorFormat(self._added_layer, path, "UTF-8")
-            self._logger.user(f"Camada exportada para {path}")
+        if not path:
+            return
+        driver_map = {
+            "GeoPackage": "GPKG",
+            "GeoJSON": "GeoJSON",
+            "Shapefile": "ESRI Shapefile",
+        }
+        driver = "GPKG"
+        for key, drv in driver_map.items():
+            if key in selected_filter:
+                driver = drv
+                break
+        options = QgsVectorFileWriter.SaveVectorOptions()
+        options.driverName = driver
+        options.fileEncoding = "UTF-8"
+        QgsVectorFileWriter.writeAsVectorFormatV3(
+            self._added_layer,
+            path,
+            self._iface.mapCanvas().mapSettings().transformContext(),
+            options,
+        )
+        self._logger.user(f"Camada exportada para {path}")
 
     def _on_view_origin(self) -> None:
         if not self._current_source_id:

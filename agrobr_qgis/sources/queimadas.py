@@ -40,7 +40,7 @@ class QueimadasSource(SourceAdapter):
 
     @classmethod
     def temporal_column(cls) -> str | None:
-        return "data_hora_gmt"
+        return "data"
 
     @classmethod
     def source_url(cls) -> str | None:

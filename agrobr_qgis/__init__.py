@@ -30,7 +30,7 @@ class agrobrStub:
 def classFactory(iface: Any) -> Any:  # noqa: N802
     from .core.dependency_doctor import DependencyDoctor
 
-    status = DependencyDoctor.check()
+    status = DependencyDoctor.ensure_version()
     if not status.installed:
         return agrobrStub(iface)
 

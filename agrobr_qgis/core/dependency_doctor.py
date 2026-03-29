@@ -31,6 +31,35 @@ class DependencyDoctor:
             return DependencyStatus(installed=False, version=None, message="agrobr não encontrado")
 
     @classmethod
+    def check_version(cls) -> DependencyStatus:
+        from packaging.version import Version
+
+        from .constants import MIN_AGROBR_VERSION
+
+        status = cls.check()
+        if not status.installed or status.version is None:
+            return status
+        try:
+            if Version(status.version) < Version(MIN_AGROBR_VERSION):
+                return DependencyStatus(
+                    installed=True,
+                    version=status.version,
+                    message=f"agrobr {status.version} desatualizado (mínimo {MIN_AGROBR_VERSION})",
+                )
+        except Exception:
+            pass
+        return status
+
+    @classmethod
+    def ensure_version(cls) -> DependencyStatus:
+        status = cls.check_version()
+        if status.installed and "desatualizado" in status.message:
+            return cls.auto_install()
+        if not status.installed:
+            return cls.auto_install()
+        return status
+
+    @classmethod
     def auto_install(cls) -> DependencyStatus:
         if cls.REQUIRED not in cls._ALLOWED_PACKAGES:
             return DependencyStatus(
@@ -80,12 +109,15 @@ class DependencyDoctor:
 
     @classmethod
     def _pip_command(cls) -> list[str]:
+        from .constants import MIN_AGROBR_VERSION
+
         return [
             sys.executable,
             "-m",
             "pip",
             "install",
-            f"{cls.REQUIRED}[{cls.EXTRAS}]",
+            f"{cls.REQUIRED}[{cls.EXTRAS}]>={MIN_AGROBR_VERSION}",
+            "--upgrade",
             "--user",
             "--quiet",
         ]

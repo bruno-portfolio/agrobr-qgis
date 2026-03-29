@@ -13,7 +13,7 @@ class TestClassFactory:
     ) -> None:
         _ = mock_qgis_full
         mock_agrobr = MagicMock()
-        mock_agrobr.__version__ = "1.0.0"
+        mock_agrobr.__version__ = "99.0.0"
         monkeypatch.setitem(sys.modules, "agrobr", mock_agrobr)
 
         from agrobr_qgis import classFactory

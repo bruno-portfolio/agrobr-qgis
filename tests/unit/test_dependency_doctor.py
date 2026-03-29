@@ -94,6 +94,8 @@ class TestAutoInstallAsync:
 class TestPipCommand:
     def test_contains_package_and_extras(self) -> None:
         cmd = DependencyDoctor._pip_command()
-        assert "agrobr[geo]" in cmd
+        pkg_arg = [c for c in cmd if "agrobr[geo]" in c]
+        assert len(pkg_arg) == 1
         assert "--user" in cmd
         assert "--quiet" in cmd
+        assert "--upgrade" in cmd

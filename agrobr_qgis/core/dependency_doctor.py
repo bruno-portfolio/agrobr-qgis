@@ -69,9 +69,14 @@ class DependencyDoctor:
             )
 
         try:
+            startupinfo = None
+            if sys.platform == "win32":
+                startupinfo = subprocess.STARTUPINFO()
+                startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
             subprocess.check_call(
                 cls._pip_command(),
                 timeout=120,
+                startupinfo=startupinfo,
             )
             cls._refresh_imports()
             return cls.check()

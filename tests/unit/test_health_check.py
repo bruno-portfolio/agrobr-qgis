@@ -101,6 +101,27 @@ class TestProbe:
         status = HealthStatus("no_url", "unchecked")
         assert status.status == "unchecked"
 
+    def test_probe_404_returns_offline(self) -> None:
+        mock_httpx = MagicMock()
+        mock_httpx.head.return_value = MagicMock(status_code=404)
+        with patch.dict("sys.modules", {"httpx": mock_httpx}):
+            result = HealthCheckTask._probe("test", "http://example.com")
+        assert result.status == "offline"
+
+    def test_probe_403_returns_online(self) -> None:
+        mock_httpx = MagicMock()
+        mock_httpx.head.return_value = MagicMock(status_code=403)
+        with patch.dict("sys.modules", {"httpx": mock_httpx}):
+            result = HealthCheckTask._probe("test", "http://example.com")
+        assert result.status == "online"
+
+    def test_probe_500_returns_offline(self) -> None:
+        mock_httpx = MagicMock()
+        mock_httpx.head.return_value = MagicMock(status_code=500)
+        with patch.dict("sys.modules", {"httpx": mock_httpx}):
+            result = HealthCheckTask._probe("test", "http://example.com")
+        assert result.status == "offline"
+
     def test_httpx_import_error_returns_unchecked(self) -> None:
         with patch.dict("sys.modules", {"httpx": None}):
             result = HealthCheckTask._probe("test", "http://example.com")

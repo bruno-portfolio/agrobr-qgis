@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import concurrent.futures
 from typing import Any
 
 from qgis.core import QgsTask  # type: ignore[import-untyped]
@@ -36,13 +37,18 @@ class FetchTask(QgsTask):  # type: ignore[misc]
         self._contract_result: ContractResult | None = None
         self._error: Exception | None = None
 
+    def _fetch_with_timeout(self) -> Any:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+            future = pool.submit(self.source.fetch, geo=self.geo, **self.params)
+            return future.result(timeout=self.timeout)
+
     def run(self) -> bool:
         try:
             if self.isCanceled():
                 return False
 
             self.setProgress(10)
-            raw = self.source.fetch(geo=self.geo, **self.params)
+            raw = self._fetch_with_timeout()
 
             if self.isCanceled():
                 return False

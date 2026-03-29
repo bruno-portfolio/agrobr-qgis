@@ -76,6 +76,30 @@ def _patch_qgis_task(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delitem(sys.modules, "agrobr_qgis.core.task_runner", raising=False)
 
 
+class _SlowAdapter(SourceAdapter):
+    @classmethod
+    def id(cls) -> str:
+        return "test_slow"
+
+    @classmethod
+    def name(cls) -> str:
+        return "Test"
+
+    @classmethod
+    def category(cls) -> SourceCategory:
+        return SourceCategory.AMBIENTAL
+
+    @classmethod
+    def capabilities(cls) -> SourceCapability:
+        return SourceCapability.TABULAR
+
+    def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
+        import time
+
+        time.sleep(5)
+        return pd.DataFrame()
+
+
 @pytest.mark.edge
 @pytest.mark.usefixtures("_patch_qgis_task")
 class TestTimeout:
@@ -89,6 +113,15 @@ class TestTimeout:
         assert task._error is not None
         assert isinstance(task._error, TimeoutError)
         assert "timed out" in str(task._error)
+
+    def test_fetch_enforces_timeout(self) -> None:
+        from agrobr_qgis.core.task_runner import FetchTask
+
+        source = _SlowAdapter()
+        task = FetchTask(source, {}, timeout=1)
+        result = task.run()
+        assert result is False
+        assert task._error is not None
 
     def test_fetch_connection_error(self) -> None:
         from agrobr_qgis.core.task_runner import FetchTask

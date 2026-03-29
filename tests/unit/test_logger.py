@@ -55,8 +55,8 @@ class TestLogger:
             "operacao registrada", "agrobr", 0
         )
 
-    def test_debug_uses_warning_level(self, mock_qgis: MagicMock) -> None:
+    def test_debug_uses_info_level(self, mock_qgis: MagicMock) -> None:
         from agrobr_qgis.core.logger import Logger
 
         Logger().debug("detalhe interno")
-        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("detalhe interno", "agrobr", 1)
+        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("detalhe interno", "agrobr", 0)

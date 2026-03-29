@@ -25,7 +25,7 @@ class Logger:
     def debug(self, msg: str) -> None:
         from qgis.core import Qgis, QgsMessageLog
 
-        QgsMessageLog.logMessage(msg, self.TAG, Qgis.MessageLevel.Warning)
+        QgsMessageLog.logMessage(msg, self.TAG, Qgis.MessageLevel.Info)
 
     def error(self, msg: str) -> None:
         from qgis.core import Qgis, QgsMessageLog

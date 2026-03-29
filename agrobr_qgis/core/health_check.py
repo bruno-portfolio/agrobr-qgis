@@ -89,7 +89,7 @@ class HealthCheckTask(QgsTask):  # type: ignore[misc]
                 with httpx.stream("GET", url, timeout=HEALTH_CHECK_TIMEOUT_SECONDS) as r:
                     pass
             ms = int((time.monotonic() - t0) * 1000)
-            online = r.status_code < 500
+            online = r.status_code < 400 or r.status_code in (401, 403)
             return HealthStatus(source_id, "online" if online else "offline", time.monotonic(), ms)
         except Exception:
             return HealthStatus(source_id, "offline", time.monotonic(), None)

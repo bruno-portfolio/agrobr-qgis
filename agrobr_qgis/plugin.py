@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 
-class AgroBRPlugin:
+class agrobrPlugin:
     def __init__(self, iface: Any) -> None:
         self.iface = iface
 
@@ -15,9 +15,9 @@ class AgroBRPlugin:
         from qgis.core import QgsApplication  # type: ignore[import-untyped]
 
         from . import sources  # noqa: F401
-        from .processing.provider import AgroBRProvider
+        from .processing.provider import agrobrProvider
 
-        self._provider = AgroBRProvider()
+        self._provider = agrobrProvider()
         QgsApplication.processingRegistry().addProvider(self._provider)  # pragma: no cover
 
         from qgis.PyQt.QtWidgets import QAction  # type: ignore[import-untyped]
@@ -35,10 +35,10 @@ class AgroBRPlugin:
         )
 
         icon = QgsApplication.getThemeIcon("/mIconRaster.svg")
-        self._action = QAction(icon, "AgroBR", self.iface.mainWindow())
+        self._action = QAction(icon, "agrobr", self.iface.mainWindow())
         self._action.triggered.connect(lambda: self._dock.setVisible(True))
         self.iface.addToolBarIcon(self._action)  # pragma: no cover
-        self.iface.addPluginToMenu("&AgroBR", self._action)  # pragma: no cover
+        self.iface.addPluginToMenu("&agrobr", self._action)  # pragma: no cover
 
     def unload(self) -> None:
         if hasattr(self, "_dock"):
@@ -47,7 +47,7 @@ class AgroBRPlugin:
             self._dock.dock_widget.deleteLater()
         if hasattr(self, "_action"):
             self.iface.removeToolBarIcon(self._action)  # pragma: no cover
-            self.iface.removePluginFromMenu("&AgroBR", self._action)  # pragma: no cover
+            self.iface.removePluginFromMenu("&agrobr", self._action)  # pragma: no cover
         try:
             from qgis.core import QgsApplication  # type: ignore[import-untyped]
 

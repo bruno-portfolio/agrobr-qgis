@@ -29,34 +29,34 @@ class TestLogger:
         _ = mock_qgis
         mock_iface = MagicMock()
         Logger(iface=mock_iface).user("teste")
-        mock_iface.messageBar().pushMessage.assert_called_once_with("AgroBR", "teste", 0, 5)
+        mock_iface.messageBar().pushMessage.assert_called_once_with("agrobr", "teste", 0, 5)
 
     def test_error_with_iface_calls_message_bar_critical(self, mock_qgis: MagicMock) -> None:
         from agrobr_qgis.core.logger import Logger
 
         mock_iface = MagicMock()
         Logger(iface=mock_iface).error("falha")
-        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("falha", "AgroBR", 2)
+        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("falha", "agrobr", 2)
         mock_iface.messageBar().pushMessage.assert_called_once_with(
-            "AgroBR", "falha", 2, duration=0
+            "agrobr", "falha", 2, duration=0
         )
 
     def test_error_without_iface_logs_only(self, mock_qgis: MagicMock) -> None:
         from agrobr_qgis.core.logger import Logger
 
         Logger().error("falha sem iface")
-        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("falha sem iface", "AgroBR", 2)
+        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("falha sem iface", "agrobr", 2)
 
     def test_audit_calls_log_message_info(self, mock_qgis: MagicMock) -> None:
         from agrobr_qgis.core.logger import Logger
 
         Logger().audit("operacao registrada")
         mock_qgis.QgsMessageLog.logMessage.assert_called_once_with(
-            "operacao registrada", "AgroBR", 0
+            "operacao registrada", "agrobr", 0
         )
 
     def test_debug_uses_warning_level(self, mock_qgis: MagicMock) -> None:
         from agrobr_qgis.core.logger import Logger
 
         Logger().debug("detalhe interno")
-        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("detalhe interno", "AgroBR", 1)
+        mock_qgis.QgsMessageLog.logMessage.assert_called_once_with("detalhe interno", "agrobr", 1)

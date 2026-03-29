@@ -56,9 +56,13 @@ class TestQueimadasSource:
         src = SourceRegistry.get("queimadas")
         assert src is not None
         params = src.parameters()
-        assert len(params) == 1
-        assert params[0].name == "data"
-        assert params[0].param_type == ParamType.DATE
+        assert len(params) == 4
+        assert params[0].name == "ano"
+        assert params[0].param_type == ParamType.INT
+        assert params[1].name == "mes"
+        assert params[1].param_type == ParamType.INT
+        assert params[2].name == "dia"
+        assert params[3].name == "uf"
 
     def test_fetch_returns_dataframe(self) -> None:
         src_cls = SourceRegistry.get("queimadas")

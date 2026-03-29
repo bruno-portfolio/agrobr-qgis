@@ -8,7 +8,7 @@ Contribuições são bem-vindas — bug reports, melhorias de documentação, no
 
 1. Verifique se já não foi reportado nas [Issues](https://github.com/bruno-portfolio/agrobr-qgis/issues)
 2. Abra uma nova issue usando o template de Bug Report
-3. Inclua: versão do QGIS, OS, versão do agrobr, logs da aba "AgroBR" no QgsMessageLog
+3. Inclua: versão do QGIS, OS, versão do agrobr, logs da aba "agrobr" no QgsMessageLog
 
 ### Pull Requests
 

@@ -4,7 +4,7 @@ from typing import Any
 
 
 class Logger:
-    TAG = "AgroBR"
+    TAG = "agrobr"
 
     def __init__(self, iface: Any = None) -> None:
         self._iface = iface

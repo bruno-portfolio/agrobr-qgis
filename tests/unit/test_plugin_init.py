@@ -19,7 +19,7 @@ class TestClassFactory:
         from agrobr_qgis import classFactory
 
         result = classFactory(MagicMock())
-        assert type(result).__name__ == "AgroBRPlugin"
+        assert type(result).__name__ == "agrobrPlugin"
 
     def test_without_agrobr_returns_stub(
         self, mock_qgis_full: MagicMock, monkeypatch: pytest.MonkeyPatch
@@ -34,20 +34,20 @@ class TestClassFactory:
 
         monkeypatch.setattr(importlib, "import_module", _raise_for_agrobr)
 
-        from agrobr_qgis import AgroBRStub, classFactory
+        from agrobr_qgis import agrobrStub, classFactory
 
         result = classFactory(MagicMock())
-        assert isinstance(result, AgroBRStub)
+        assert isinstance(result, agrobrStub)
 
     def test_stub_initgui_no_raise(self, mock_qgis_full: MagicMock, mock_iface: MagicMock) -> None:
         _ = mock_qgis_full
-        from agrobr_qgis import AgroBRStub
+        from agrobr_qgis import agrobrStub
 
-        stub = AgroBRStub(mock_iface)
+        stub = agrobrStub(mock_iface)
         stub.initGui()
 
     def test_stub_unload_no_raise(self, mock_iface: MagicMock) -> None:
-        from agrobr_qgis import AgroBRStub
+        from agrobr_qgis import agrobrStub
 
-        stub = AgroBRStub(mock_iface)
+        stub = agrobrStub(mock_iface)
         stub.unload()

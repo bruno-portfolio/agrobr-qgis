@@ -5,7 +5,7 @@ description = "Plugin QGIS para dados agrícolas brasileiros via agrobr"
 license = "GPL-2.0-or-later"
 requires-python = ">=3.12"
 authors = [
-    { name = "Bruno", email = "brunoescalhao@gmail.com" }
+    { name = "Bruno Escalhão", email = "brunoescalhao@gmail.com" }
 ]
 
 [tool.ruff]

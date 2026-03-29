@@ -25,7 +25,7 @@ class AuthManager:
         cfg_id = f"{cls.PREFIX}{source_id}"
         cfg = QgsAuthMethodConfig()
         cfg.setId(cfg_id)
-        cfg.setName(f"AgroBR - {source_id}")
+        cfg.setName(f"agrobr - {source_id}")
         cfg.setMethod(cls.METHOD)
         cfg.setConfig("token", token)
         if auth_mgr.existsAuthenticationConfig(cfg_id):

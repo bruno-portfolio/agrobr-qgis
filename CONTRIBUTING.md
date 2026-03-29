@@ -10,7 +10,7 @@ Contributions are welcome — bug reports, documentation improvements, new sourc
 
 1. Check if it's already reported in [Issues](https://github.com/bruno-portfolio/agrobr-qgis/issues)
 2. Open a new issue using the Bug Report template
-3. Include: QGIS version, OS, agrobr version, logs from the "AgroBR" tab in QgsMessageLog
+3. Include: QGIS version, OS, agrobr version, logs from the "agrobr" tab in QgsMessageLog
 
 ### Pull Requests
 

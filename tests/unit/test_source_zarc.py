@@ -49,7 +49,7 @@ class TestZarcZoneamentoSource:
     def test_join_column(self) -> None:
         src = SourceRegistry.get("zarc_zoneamento")
         assert src is not None
-        assert src.join_column() == "codigo_municipio"
+        assert src.join_column() == "geocodigo"
 
     def test_fetch_returns_dataframe(self) -> None:
         src_cls = SourceRegistry.get("zarc_zoneamento")

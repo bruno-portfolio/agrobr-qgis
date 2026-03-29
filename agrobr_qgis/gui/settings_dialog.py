@@ -20,7 +20,7 @@ class SettingsDialog:  # pragma: no cover
         )
 
         self._dialog = QDialog(parent)
-        self._dialog.setWindowTitle(self._dialog.tr("AgroBR — Configuracoes"))
+        self._dialog.setWindowTitle(self._dialog.tr("agrobr — Configuracoes"))
         self._dialog.setMinimumWidth(400)
 
         layout = QVBoxLayout(self._dialog)

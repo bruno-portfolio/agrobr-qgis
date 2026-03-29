@@ -31,7 +31,7 @@ Centraliza 38+ fontes de dados agrícolas brasileiros (IBGE, CONAB, CEPEA, INPE,
 
 1. Abra QGIS 4
 2. Menu **Plugins → Manage and Install Plugins**
-3. Busque por **AgroBR**
+3. Busque por **agrobr**
 4. Clique **Install Plugin**
 
 O plugin instala a dependência `agrobr[geo]` automaticamente na primeira execução.
@@ -51,7 +51,7 @@ Copie a pasta `agrobr_qgis/` para o diretório de plugins do QGIS:
 ## Uso
 
 1. Ative o plugin no Plugin Manager
-2. O dock **AgroBR** aparece na lateral
+2. O dock **agrobr** aparece na lateral
 3. Navegue pelas categorias de fontes (Ambiental, Produção, Mercado, Crédito, Clima)
 4. Selecione uma fonte, preencha os parâmetros
 5. Clique **Buscar Dados**

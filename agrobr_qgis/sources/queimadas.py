@@ -42,16 +42,36 @@ class QueimadasSource(SourceAdapter):
     def parameters(cls) -> list[SourceParameter]:
         return [
             SourceParameter(
-                name="data",
-                label="Data",
-                param_type=ParamType.DATE,
-                required=False,
-                help_text="Data dos focos (default: hoje)",
+                name="ano",
+                label="Ano",
+                param_type=ParamType.INT,
+                required=True,
+                default=2026,
+            ),
+            SourceParameter(
+                name="mes",
+                label="Mês",
+                param_type=ParamType.INT,
+                required=True,
+                default=1,
+            ),
+            SourceParameter(
+                name="dia",
+                label="Dia",
+                param_type=ParamType.INT,
+                help_text="Opcional — deixe 0 para o mês inteiro",
+            ),
+            SourceParameter(
+                name="uf",
+                label="UF",
+                param_type=ParamType.UF,
             ),
         ]
 
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
         from agrobr.sync import queimadas  # type: ignore[import-untyped]
 
+        if not kwargs.get("dia"):
+            kwargs.pop("dia", None)
         result: pd.DataFrame = queimadas.focos_geo(**kwargs) if geo else queimadas.focos(**kwargs)
         return result

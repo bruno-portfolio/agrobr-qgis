@@ -64,7 +64,7 @@ class FetchTask(QgsTask):  # type: ignore[misc]
                 and self.source.capabilities() & SourceCapability.MUNICIPAL_JOIN
             ):
                 join_col = self.source.join_column()
-                if join_col:
+                if join_col and join_col in self._contract_result.df.columns:
                     from .spatial_join import SpatialJoin  # type: ignore[import-not-found]
 
                     geo_df = SpatialJoin.to_municipal(self._contract_result.df, join_col)

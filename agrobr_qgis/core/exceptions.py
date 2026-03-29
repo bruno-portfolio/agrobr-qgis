@@ -1,26 +1,26 @@
-class AgroBRError(Exception):
+class agrobrError(Exception):
     pass
 
 
-class FetchError(AgroBRError):
+class FetchError(agrobrError):
     pass
 
 
-class ContractError(AgroBRError):
+class ContractError(agrobrError):
     pass
 
 
-class JoinError(AgroBRError):
+class JoinError(agrobrError):
     pass
 
 
-class AuthError(AgroBRError):
+class AuthError(agrobrError):
     pass
 
 
-class DependencyError(AgroBRError):
+class DependencyError(agrobrError):
     pass
 
 
-class ChecksumError(AgroBRError):
+class ChecksumError(agrobrError):
     pass

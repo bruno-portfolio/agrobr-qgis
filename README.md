@@ -31,7 +31,7 @@ Centralizes 38+ Brazilian agricultural data sources (IBGE, CONAB, CEPEA, INPE, I
 
 1. Open QGIS 4
 2. Go to **Plugins → Manage and Install Plugins**
-3. Search for **AgroBR**
+3. Search for **agrobr**
 4. Click **Install Plugin**
 
 The plugin auto-installs the `agrobr[geo]` dependency on first run.
@@ -51,7 +51,7 @@ Copy the `agrobr_qgis/` folder to the QGIS plugins directory:
 ## Usage
 
 1. Enable the plugin in Plugin Manager
-2. The **AgroBR** dock panel appears on the side
+2. The **agrobr** dock panel appears on the side
 3. Browse source categories (Environmental, Production, Market, Credit, Climate)
 4. Select a source, fill in parameters
 5. Click **Fetch Data**

@@ -98,5 +98,12 @@ class SpatialJoin:
             raise ChecksumError(f"Checksum da malha inválido: {actual} (esperado: {expected})")
 
     @classmethod
+    def localidade_to_code(cls, names: pd.Series) -> pd.Series:
+        mesh = cls._get_mesh(MUNICIPAL_MESH_URL, MUNICIPAL_MESH_SHA256)
+        lookup = dict(zip(mesh["NM_MUN"] + " - " + mesh["SIGLA_UF"], mesh["CD_MUN"]))
+        result: pd.Series = names.map(lookup)  # type: ignore[assignment]
+        return result
+
+    @classmethod
     def clear_cache(cls) -> None:
         cls._mesh_cache.clear()

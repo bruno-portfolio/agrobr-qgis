@@ -5,9 +5,9 @@ from unittest.mock import MagicMock
 
 class TestStubLifecycle:
     def test_stub_shows_warning(self, mock_qgis_full: MagicMock, mock_iface: MagicMock) -> None:
-        from agrobr_qgis import AgroBRStub
+        from agrobr_qgis import agrobrStub
 
-        stub = AgroBRStub(mock_iface)
+        stub = agrobrStub(mock_iface)
         stub.initGui()
 
         mock_qgis_full.QMessageBox.warning.assert_called_once()
@@ -20,9 +20,9 @@ class TestStubLifecycle:
         self, mock_qgis_full: MagicMock, mock_iface: MagicMock
     ) -> None:
         _ = mock_qgis_full
-        from agrobr_qgis import AgroBRStub
+        from agrobr_qgis import agrobrStub
 
-        stub = AgroBRStub(mock_iface)
+        stub = agrobrStub(mock_iface)
         stub.initGui()
         stub.unload()
 

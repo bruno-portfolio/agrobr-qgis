@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Reportar um problema no plugin AgroBR
+about: Reportar um problema no plugin agrobr
 title: "[bug] "
 labels: bug
 assignees: ""
@@ -11,7 +11,7 @@ Descreva o bug de forma clara e concisa.
 
 ## Passos para reproduzir
 1. Abrir QGIS
-2. Ativar plugin AgroBR
+2. Ativar plugin agrobr
 3. ...
 
 ## Comportamento esperado
@@ -27,4 +27,4 @@ O que está acontecendo.
 - **Plugin:** (ex: 0.1.0)
 
 ## Logs
-Copie a aba "AgroBR" no QgsMessageLog (View → Log Messages → AgroBR).
+Copie a aba "agrobr" no QgsMessageLog (View → Log Messages → agrobr).

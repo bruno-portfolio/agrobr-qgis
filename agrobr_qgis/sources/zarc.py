@@ -40,7 +40,7 @@ class ZarcZoneamentoSource(SourceAdapter):
 
     @classmethod
     def join_column(cls) -> str | None:
-        return "codigo_municipio"
+        return "geocodigo"
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:

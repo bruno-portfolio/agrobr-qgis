@@ -49,7 +49,7 @@ class MainDock:  # pragma: no cover
         self._added_layer: Any = None
         self._connections: list[tuple[Any, Any]] = []
 
-        self._dock = QDockWidget("AgroBR")
+        self._dock = QDockWidget("agrobr")
         main_widget = QWidget()
         main_layout = QVBoxLayout(main_widget)
         main_layout.setContentsMargins(4, 4, 4, 4)
@@ -64,6 +64,8 @@ class MainDock:  # pragma: no cover
         self._source_tree = SourceTreeWidget()
         splitter.addWidget(self._source_tree.view)
 
+        from qgis.PyQt.QtWidgets import QScrollArea  # type: ignore[import-untyped]
+
         self._stacked = QStackedWidget()
         self._idle_label = QLabel(self._dock_tr("Selecione uma fonte de dados para comecar"))
         self._idle_label.setWordWrap(True)
@@ -74,7 +76,11 @@ class MainDock:  # pragma: no cover
         self._param_layout.setContentsMargins(0, 0, 0, 0)
         self._param_panel = ParamPanel(iface)
         self._param_layout.addWidget(self._param_panel.widget)
-        self._stacked.addWidget(self._param_container)
+        param_scroll = QScrollArea()
+        param_scroll.setWidget(self._param_container)
+        param_scroll.setWidgetResizable(True)
+        param_scroll.setFrameShape(QScrollArea.Shape.NoFrame)
+        self._stacked.addWidget(param_scroll)
 
         self._progress_bar = QProgressBar()
         self._progress_bar.setRange(0, 0)
@@ -122,17 +128,17 @@ class MainDock:  # pragma: no cover
 
         from qgis.PyQt.QtGui import QKeySequence, QShortcut  # type: ignore[import-untyped]
 
-        sc_search = QShortcut(QKeySequence("Ctrl+F"), self._dock)
-        sc_search.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
-        sc_search.activated.connect(self._search_bar.setFocus)
+        self._sc_search = QShortcut(QKeySequence("Ctrl+F"), self._dock)
+        self._sc_search.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+        self._sc_search.activated.connect(self._search_bar.setFocus)
 
-        sc_fetch = QShortcut(QKeySequence(Qt.Key.Key_Return), self._dock)
-        sc_fetch.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
-        sc_fetch.activated.connect(self._on_fetch_shortcut)
+        self._sc_fetch = QShortcut(QKeySequence(Qt.Key.Key_Return), self._dock)
+        self._sc_fetch.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+        self._sc_fetch.activated.connect(self._on_fetch_shortcut)
 
-        sc_cancel = QShortcut(QKeySequence(Qt.Key.Key_Escape), self._dock)
-        sc_cancel.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
-        sc_cancel.activated.connect(self._on_cancel)
+        self._sc_cancel = QShortcut(QKeySequence(Qt.Key.Key_Escape), self._dock)
+        self._sc_cancel.setContext(Qt.ShortcutContext.WidgetWithChildrenShortcut)
+        self._sc_cancel.activated.connect(self._on_cancel)
 
         self._apply_state(DockState.IDLE)
 
@@ -144,6 +150,8 @@ class MainDock:  # pragma: no cover
         source_id = self._source_tree.selected_source_id()
         if source_id is None:
             return
+        if self._current_source_id and self._state == DockState.SELECTED:
+            self._param_cache.save(self._current_source_id, self._param_panel.collect_params())
         self._current_source_id = source_id
         self._added_layer = None
 
@@ -236,7 +244,7 @@ class MainDock:  # pragma: no cover
 
         adapter_cls = SourceRegistry.get(self._current_source_id)
         name = adapter_cls.name() if adapter_cls else self._current_source_id
-        layer_name = f"AgroBR — {name}"
+        layer_name = f"agrobr — {name}"
 
         result = self._current_result
         layer = LayerBuilder.from_contract_result(result, layer_name)

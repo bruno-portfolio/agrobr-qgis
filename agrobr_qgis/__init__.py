@@ -1,4 +1,4 @@
-# AgroBR QGIS Plugin
+# agrobr QGIS Plugin
 # Copyright (C) 2026 Bruno
 # SPDX-License-Identifier: GPL-2.0-or-later
 
@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import Any
 
 
-class AgroBRStub:
+class agrobrStub:
     def __init__(self, iface: Any) -> None:
         self.iface = iface
 
@@ -19,7 +19,7 @@ class AgroBRStub:
         Logger(self.iface).error("agrobr não encontrado. Instale com: pip install agrobr[geo]")
         QMessageBox.warning(
             None,
-            "AgroBR",
+            "agrobr",
             "A biblioteca agrobr não está instalada.\n\nInstale com:\n  pip install agrobr[geo]",
         )
 
@@ -32,8 +32,8 @@ def classFactory(iface: Any) -> Any:  # noqa: N802
 
     status = DependencyDoctor.check()
     if not status.installed:
-        return AgroBRStub(iface)
+        return agrobrStub(iface)
 
-    from .plugin import AgroBRPlugin
+    from .plugin import agrobrPlugin
 
-    return AgroBRPlugin(iface)
+    return agrobrPlugin(iface)

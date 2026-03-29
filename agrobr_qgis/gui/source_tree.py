@@ -8,12 +8,8 @@ ITEM_TYPE_ROLE_OFFSET = 1
 _CATEGORY_LABELS: dict[str, str] = {
     "ambiental": "Ambiental",
     "producao": "Producao",
-    "mercado": "Mercado",
     "fundiario": "Fundiario",
     "regulatorio": "Regulatorio",
-    "credito": "Credito",
-    "clima": "Clima",
-    "comercio_exterior": "Comercio Exterior",
 }
 
 

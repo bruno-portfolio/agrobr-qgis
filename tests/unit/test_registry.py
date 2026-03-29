@@ -54,7 +54,7 @@ class TestSourceRegistry:
 
     def test_list_by_category(self) -> None:
         SourceRegistry.register(_make_source("env1", cat=SourceCategory.AMBIENTAL))
-        SourceRegistry.register(_make_source("mkt1", cat=SourceCategory.MERCADO))
+        SourceRegistry.register(_make_source("reg1", cat=SourceCategory.REGULATORIO))
         result = SourceRegistry.list_by_category(SourceCategory.AMBIENTAL)
         assert len(result) == 1
         assert result[0].id() == "env1"

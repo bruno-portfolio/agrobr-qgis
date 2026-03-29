@@ -11,10 +11,6 @@ import pandas as pd
 class SourceCategory(StrEnum):
     AMBIENTAL = "ambiental"
     PRODUCAO = "producao"
-    MERCADO = "mercado"
-    CREDITO = "credito"
-    CLIMA = "clima"
-    COMERCIO_EXTERIOR = "comercio_exterior"
     FUNDIARIO = "fundiario"
     REGULATORIO = "regulatorio"
 

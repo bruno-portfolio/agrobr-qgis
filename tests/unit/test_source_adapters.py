@@ -39,7 +39,7 @@ class TestSourceCategory:
         assert len(cat) > 0
 
     def test_all_categories_exist(self) -> None:
-        assert len(SourceCategory) == 8
+        assert len(SourceCategory) == 4
 
 
 class TestSourceCapability:

@@ -112,7 +112,7 @@ class DependencyDoctor:
         from .constants import MIN_AGROBR_VERSION
 
         return [
-            sys.executable,
+            cls._python_path(),
             "-m",
             "pip",
             "install",
@@ -121,6 +121,18 @@ class DependencyDoctor:
             "--user",
             "--quiet",
         ]
+
+    @staticmethod
+    def _python_path() -> str:
+        if "python" in sys.executable.lower():
+            return sys.executable
+        import shutil
+
+        for name in ("python3", "python"):
+            path = shutil.which(name)
+            if path:
+                return path
+        return sys.executable
 
     @staticmethod
     def _refresh_imports() -> None:

@@ -30,9 +30,15 @@ class agrobrStub:
 def classFactory(iface: Any) -> Any:  # noqa: N802
     from .core.dependency_doctor import DependencyDoctor
 
-    status = DependencyDoctor.ensure_version()
+    status = DependencyDoctor.check()
     if not status.installed:
-        return agrobrStub(iface)
+        status = DependencyDoctor.auto_install()
+        if not status.installed:
+            return agrobrStub(iface)
+
+    version_status = DependencyDoctor.check_version()
+    if "desatualizado" in version_status.message:
+        DependencyDoctor.auto_install_async(lambda _: None)
 
     from .plugin import agrobrPlugin
 

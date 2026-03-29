@@ -133,6 +133,10 @@ class BcbSgsSource(SourceAdapter):
         return "data"
 
     @classmethod
+    def health_url(cls) -> str | None:
+        return "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados/ultimos/1?formato=json"
+
+    @classmethod
     def name(cls) -> str:
         return "SGS (BCB)"
 

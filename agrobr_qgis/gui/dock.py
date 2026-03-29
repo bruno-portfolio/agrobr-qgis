@@ -270,12 +270,18 @@ class MainDock:  # pragma: no cover
         from qgis.core import QgsProject  # type: ignore[import-untyped]
 
         from agrobr_qgis.core.layer_builder import LayerBuilder
+        from agrobr_qgis.core.registry import SourceRegistry
 
         root = QgsProject.instance().layerTreeRoot()
         group = root.insertGroup(0, f"agrobr — {self._current_template_result.template_name}")
         for outcome in self._current_template_result.succeeded:
             layer_name = f"agrobr — {outcome.source_name}"
-            layer = LayerBuilder.from_contract_result(outcome.result, layer_name)
+            style_path = LayerBuilder.resolve_style(outcome.result.geometry_type)
+            adapter_cls = SourceRegistry.get(outcome.source_id)
+            temporal_col = adapter_cls.temporal_column() if adapter_cls else None
+            layer = LayerBuilder.from_contract_result(
+                outcome.result, layer_name, style_path, temporal_col
+            )
             QgsProject.instance().addMapLayer(layer, False)
             group.addLayer(layer)
         self._logger.user(f"{len(self._current_template_result.succeeded)} camadas adicionadas")
@@ -443,13 +449,19 @@ class MainDock:  # pragma: no cover
 
     def close(self) -> None:
         self._fetch_controller.cancel()
+        if self._current_template_task:
+            self._current_template_task.cancel()
+            self._current_template_task = None
         self._disconnect_all()
         import contextlib
 
-        with contextlib.suppress(TypeError, RuntimeError):
-            self._project.writeProject.disconnect(self._save_to_project)
-            self._project.readProject.disconnect(self._restore_from_project)
-            self._project.cleared.disconnect(self._param_cache.clear)
+        for sig, slot in [
+            (self._project.writeProject, self._save_to_project),
+            (self._project.readProject, self._restore_from_project),
+            (self._project.cleared, self._param_cache.clear),
+        ]:
+            with contextlib.suppress(TypeError, RuntimeError):
+                sig.disconnect(slot)
         self._dock.close()
 
     @property

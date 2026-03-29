@@ -93,6 +93,10 @@ class IbgePamSource(SourceAdapter):
 @SourceRegistry.register
 class IbgeLspaSource(SourceAdapter):
     @classmethod
+    def health_url(cls) -> str | None:
+        return "https://servicodados.ibge.gov.br/api/v3/agregados"
+
+    @classmethod
     def id(cls) -> str:
         return "ibge_lspa"
 
@@ -110,7 +114,7 @@ class IbgeLspaSource(SourceAdapter):
 
     @classmethod
     def capabilities(cls) -> SourceCapability:
-        return SourceCapability.TABULAR | SourceCapability.TEMPORAL
+        return SourceCapability.TABULAR
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:
@@ -147,6 +151,10 @@ class IbgeLspaSource(SourceAdapter):
 
 @SourceRegistry.register
 class IbgePpmSource(SourceAdapter):
+    @classmethod
+    def health_url(cls) -> str | None:
+        return "https://servicodados.ibge.gov.br/api/v3/agregados"
+
     @classmethod
     def id(cls) -> str:
         return "ibge_ppm"

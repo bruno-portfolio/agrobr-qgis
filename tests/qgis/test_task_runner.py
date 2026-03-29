@@ -144,9 +144,10 @@ class TestFetchTask:
 
         mock_spatial_join.SpatialJoin.to_municipal.assert_not_called()
 
-    def test_agrobr_log_level_set_during_run(self) -> None:
+    def test_agrobr_log_level_respected_during_run(self) -> None:
         from agrobr_qgis.core.task_runner import FetchTask
 
+        os.environ.setdefault("AGROBR_LOG_LEVEL", "WARNING")
         captured: list[str | None] = []
 
         class _SpySource(_GeoSource):

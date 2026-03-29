@@ -86,7 +86,6 @@ class TestConabSerieHistoricaSource:
         assert src is not None
         caps = src.capabilities()
         assert caps & SourceCapability.TABULAR
-        assert caps & SourceCapability.TEMPORAL
 
     def test_fetch_returns_dataframe(self) -> None:
         src_cls = SourceRegistry.get("conab_serie_historica")

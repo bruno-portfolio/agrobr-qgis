@@ -48,6 +48,34 @@ class TestMapDtype:
         assert LayerBuilder._map_dtype("complex128") == DTYPE_FALLBACK
 
 
+class TestResolveStyle:
+    def test_polygon(self) -> None:
+        result = LayerBuilder.resolve_style("Polygon")
+        assert result is not None
+        assert result.endswith("polygon.qml")
+
+    def test_multipolygon(self) -> None:
+        result = LayerBuilder.resolve_style("MultiPolygon")
+        assert result is not None
+        assert result.endswith("polygon.qml")
+
+    def test_point(self) -> None:
+        result = LayerBuilder.resolve_style("Point")
+        assert result is not None
+        assert result.endswith("point.qml")
+
+    def test_line(self) -> None:
+        result = LayerBuilder.resolve_style("LineString")
+        assert result is not None
+        assert result.endswith("line.qml")
+
+    def test_none_returns_none(self) -> None:
+        assert LayerBuilder.resolve_style(None) is None
+
+    def test_unknown_returns_none(self) -> None:
+        assert LayerBuilder.resolve_style("GeometryCollection") is None
+
+
 class TestPipelineIntegration:
     def test_fixture_through_contract_to_decision(self) -> None:
         gdf = make_queimadas_gdf()

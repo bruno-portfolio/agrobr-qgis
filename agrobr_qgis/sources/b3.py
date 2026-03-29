@@ -36,7 +36,7 @@ class B3AjustesSource(SourceAdapter):
 
     @classmethod
     def capabilities(cls) -> SourceCapability:
-        return SourceCapability.TABULAR | SourceCapability.TEMPORAL
+        return SourceCapability.TABULAR
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:
@@ -81,7 +81,7 @@ class B3HistoricoSource(SourceAdapter):
 
     @classmethod
     def capabilities(cls) -> SourceCapability:
-        return SourceCapability.TABULAR | SourceCapability.TEMPORAL
+        return SourceCapability.TABULAR
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:

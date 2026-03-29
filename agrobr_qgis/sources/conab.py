@@ -93,7 +93,7 @@ class ConabSerieHistoricaSource(SourceAdapter):
 
     @classmethod
     def capabilities(cls) -> SourceCapability:
-        return SourceCapability.TABULAR | SourceCapability.TEMPORAL
+        return SourceCapability.TABULAR
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:

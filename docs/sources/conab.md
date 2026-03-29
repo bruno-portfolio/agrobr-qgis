@@ -1,6 +1,6 @@
 # Fontes CONAB
 
-Dados de safras, producao agricola e precos praticados nas CEASAs.
+Dados de safras, produção agrícola e preços praticados nas CEASAs.
 
 ---
 
@@ -10,18 +10,18 @@ Levantamento de safras CONAB.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
+1. No dock agrobr, expanda a categoria **Produção**
 2. Selecione **Safras**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Texto | Nao | Produto agricola |
-| safra | Texto | Nao | Safra (ex: 2023/24) |
-| uf | UF | Nao | Unidade da Federacao |
+| produto | Texto | Não | Produto agrícola |
+| safra | Texto | Não | Safra (ex: 2023/24) |
+| uf | UF | Não | Unidade da Federação |
 
 ### Capacidades
 
@@ -34,25 +34,25 @@ Levantamento de safras CONAB.
 
 ---
 
-## Serie Historica (CONAB)
+## Série Histórica (CONAB)
 
-Serie historica de producao agricola.
+Série histórica de produção agrícola.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
-2. Selecione **Serie Historica**
-3. Preencha os parametros abaixo
+1. No dock agrobr, expanda a categoria **Produção**
+2. Selecione **Série Histórica**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Texto | Sim | Produto agricola |
-| inicio | Inteiro | Nao | Ano inicial |
-| fim | Inteiro | Nao | Ano final |
-| uf | UF | Nao | Unidade da Federacao |
+| produto | Texto | Sim | Produto agrícola |
+| inicio | Inteiro | Não | Ano inicial |
+| fim | Inteiro | Não | Ano final |
+| uf | UF | Não | Unidade da Federação |
 
 ### Capacidades
 
@@ -65,23 +65,23 @@ Serie historica de producao agricola.
 
 ---
 
-## CEASA Precos (CONAB)
+## CEASA Preços (CONAB)
 
-Precos praticados nas CEASAs.
+Preços praticados nas CEASAs.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
-2. Selecione **CEASA Precos**
-3. Preencha os parametros abaixo
+1. No dock agrobr, expanda a categoria **Produção**
+2. Selecione **CEASA Preços**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Texto | Nao | Produto agricola |
-| ceasa | Texto | Nao | Central de abastecimento |
+| produto | Texto | Não | Produto agrícola |
+| ceasa | Texto | Não | Central de abastecimento |
 
 ### Capacidades
 
@@ -96,4 +96,4 @@ Precos praticados nas CEASAs.
 
 ## Notas
 
-Todas as fontes CONAB sao tabulares (sem geometria).
+Todas as fontes CONAB são tabulares (sem geometria).

@@ -1,22 +1,22 @@
 # Indicadores (CEPEA)
 
-Indicadores de precos agropecuarios CEPEA/ESALQ.
+Indicadores de preços agropecuários CEPEA/ESALQ.
 
 ## Como usar
 
 1. No dock agrobr, expanda a categoria **Mercado**
 2. Selecione **Indicadores**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Produto | Sim | Ex: Soja, Boi Gordo, Milho, Cafe, Acucar |
-| praca | Texto | Nao | Praca de referencia |
-| inicio | Data | Nao | Data inicio |
-| fim | Data | Nao | Data fim |
+| produto | Produto | Sim | Ex: Soja, Boi Gordo, Milho, Café, Açúcar |
+| praca | Texto | Não | Praça de referência |
+| inicio | Data | Não | Data início |
+| fim | Data | Não | Data fim |
 
 ## Capacidades
 
@@ -29,4 +29,4 @@ Indicadores de precos agropecuarios CEPEA/ESALQ.
 
 ## Notas
 
-Fonte tabular (sem geometria). Use o filtro temporal para series historicas de preco.
+Fonte tabular (sem geometria). Use o filtro temporal para séries históricas de preço.

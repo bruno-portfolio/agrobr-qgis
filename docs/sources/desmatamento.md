@@ -6,21 +6,21 @@ Alertas de desmatamento em tempo real (INPE/DETER).
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **DETER**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bioma | Escolha | Nao | Amazonia, Cerrado, Mata Atlantica, Caatinga, Pampa, Pantanal |
-| uf | UF | Nao | Filtrar por estado |
-| data_inicio | Data | Nao | Data inicial do periodo |
-| data_fim | Data | Nao | Data final do periodo |
+| bioma | Escolha | Não | Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa, Pantanal |
+| uf | UF | Não | Filtrar por estado |
+| data_inicio | Data | Não | Data inicial do período |
+| data_fim | Data | Não | Data final do período |
 
 ## Capacidades
 
-- [x] Saida geoespacial — marque "Saida geoespacial" para obter geometrias
+- [x] Saída geoespacial — marque "Saída geoespacial" para obter geometrias
 - [x] Filtro temporal
 - [x] Filtro por bounding box
 - [ ] Join municipal
@@ -40,21 +40,21 @@ Desmatamento anual por corte raso (INPE/PRODES).
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **PRODES**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bioma | Escolha | Nao | Amazonia, Cerrado, Mata Atlantica, Caatinga, Pampa, Pantanal |
-| uf | UF | Nao | Filtrar por estado |
-| data_inicio | Data | Nao | Data inicial do periodo |
-| data_fim | Data | Nao | Data final do periodo |
+| bioma | Escolha | Não | Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa, Pantanal |
+| uf | UF | Não | Filtrar por estado |
+| data_inicio | Data | Não | Data inicial do período |
+| data_fim | Data | Não | Data final do período |
 
 ## Capacidades
 
-- [x] Saida geoespacial — marque "Saida geoespacial" para obter geometrias
+- [x] Saída geoespacial — marque "Saída geoespacial" para obter geometrias
 - [ ] Filtro temporal
 - [x] Filtro por bounding box
 - [ ] Join municipal
@@ -62,4 +62,4 @@ Desmatamento anual por corte raso (INPE/PRODES).
 ## Notas
 
 - Dados anuais consolidados.
-- Use DETER para monitoramento em tempo real e PRODES para analise historica.
+- Use DETER para monitoramento em tempo real e PRODES para análise histórica.

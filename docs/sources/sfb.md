@@ -1,28 +1,28 @@
-# Fontes SFB (Servico Florestal Brasileiro)
+# Fontes SFB (Serviço Florestal Brasileiro)
 
-Dados florestais e de concessoes do Servico Florestal Brasileiro.
+Dados florestais e de concessões do Serviço Florestal Brasileiro.
 
 ---
 
 ## CNFP (SFB)
 
-Cadastro Nacional de Florestas Publicas.
+Cadastro Nacional de Florestas Públicas.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **CNFP**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Unidade da Federacao |
-| bioma | Texto | Nao | Bioma |
-| categoria | Texto | Nao | Categoria da floresta publica |
-| bbox | Bounding Box | Nao | Area de interesse |
+| uf | UF | Não | Unidade da Federação |
+| bioma | Texto | Não | Bioma |
+| categoria | Texto | Não | Categoria da floresta pública |
+| bbox | Bounding Box | Não | Área de interesse |
 
 ### Capacidades
 
@@ -35,23 +35,23 @@ Cadastro Nacional de Florestas Publicas.
 
 ---
 
-## Concessoes Florestais (SFB)
+## Concessões Florestais (SFB)
 
-Areas de concessao florestal federal.
+Áreas de concessão florestal federal.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
-2. Selecione **Concessoes Florestais**
-3. Preencha os parametros abaixo
+2. Selecione **Concessões Florestais**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Unidade da Federacao |
-| bbox | Bounding Box | Nao | Area de interesse |
+| uf | UF | Não | Unidade da Federação |
+| bbox | Bounding Box | Não | Área de interesse |
 
 ### Capacidades
 
@@ -66,22 +66,22 @@ Areas de concessao florestal federal.
 
 ## IFN Conglomerados (SFB)
 
-Inventario Florestal Nacional — conglomerados de parcelas amostrais.
+Inventário Florestal Nacional — conglomerados de parcelas amostrais.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **IFN Conglomerados**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Unidade da Federacao |
-| bioma | Texto | Nao | Bioma |
-| bbox | Bounding Box | Nao | Area de interesse |
+| uf | UF | Não | Unidade da Federação |
+| bioma | Texto | Não | Bioma |
+| bbox | Bounding Box | Não | Área de interesse |
 
 ### Capacidades
 

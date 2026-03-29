@@ -1,67 +1,67 @@
 # Fontes IBGE
 
-Dados de producao agricola e pecuaria do Instituto Brasileiro de Geografia e Estatistica.
+Dados de produção agrícola e pecuária do Instituto Brasileiro de Geografia e Estatística.
 
 ---
 
 ## PAM (IBGE)
 
-Producao Agricola Municipal — dados anuais de producao, area plantada, rendimento e valor da producao por municipio.
+Produção Agrícola Municipal — dados anuais de produção, área plantada, rendimento e valor da produção por município.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
+1. No dock agrobr, expanda a categoria **Produção**
 2. Selecione **PAM**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Produto | Sim | Produto agricola |
-| ano | Inteiro | Nao | Ano de referencia |
-| uf | UF | Nao | Filtrar por estado |
-| nivel | Escolha | Nao | Nivel de agregacao: brasil, uf ou municipio (default: uf) |
+| produto | Produto | Sim | Produto agrícola |
+| ano | Inteiro | Não | Ano de referência |
+| uf | UF | Não | Filtrar por estado |
+| nivel | Escolha | Não | Nível de agregação: brasil, uf ou municipio (default: uf) |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [x] Join municipal
 
 ### Join Municipal
 
-Quando `nivel="municipio"`, marque "Join municipal" para transformar os dados tabulares em uma camada geoespacial. O plugin realiza um inner join entre a coluna `codigo_municipio` e a malha municipal do IBGE, gerando uma camada com geometria de cada municipio.
+Quando `nivel="municipio"`, marque "Join municipal" para transformar os dados tabulares em uma camada geoespacial. O plugin realiza um inner join entre a coluna `codigo_municipio` e a malha municipal do IBGE, gerando uma camada com geometria de cada município.
 
 ---
 
 ## LSPA (IBGE)
 
-Levantamento Sistematico da Producao Agricola — estimativas mensais de safra.
+Levantamento Sistemático da Produção Agrícola — estimativas mensais de safra.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
+1. No dock agrobr, expanda a categoria **Produção**
 2. Selecione **LSPA**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| produto | Produto | Sim | Produto agricola |
-| ano | Inteiro | Nao | Ano de referencia |
-| mes | Inteiro | Nao | Mes de referencia |
-| uf | UF | Nao | Filtrar por estado |
+| produto | Produto | Sim | Produto agrícola |
+| ano | Inteiro | Não | Ano de referência |
+| mes | Inteiro | Não | Mês de referência |
+| uf | UF | Não | Filtrar por estado |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [x] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
@@ -70,39 +70,39 @@ Levantamento Sistematico da Producao Agricola — estimativas mensais de safra.
 
 ## PPM (IBGE)
 
-Pesquisa da Pecuaria Municipal — dados anuais de rebanho, producao e valor por municipio.
+Pesquisa da Pecuária Municipal — dados anuais de rebanho, produção e valor por município.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Producao**
+1. No dock agrobr, expanda a categoria **Produção**
 2. Selecione **PPM**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| especie | Texto | Sim | Especie pecuaria (ex: Bovino, Suino, Aves) |
-| ano | Inteiro | Nao | Ano de referencia |
-| uf | UF | Nao | Filtrar por estado |
-| nivel | Escolha | Nao | Nivel de agregacao: brasil, uf ou municipio (default: uf) |
+| especie | Texto | Sim | Espécie pecuária (ex: Bovino, Suíno, Aves) |
+| ano | Inteiro | Não | Ano de referência |
+| uf | UF | Não | Filtrar por estado |
+| nivel | Escolha | Não | Nível de agregação: brasil, uf ou municipio (default: uf) |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [x] Join municipal
 
 ### Join Municipal
 
-Quando `nivel="municipio"`, marque "Join municipal" para transformar os dados tabulares em uma camada geoespacial. O plugin realiza um inner join entre a coluna `codigo_municipio` e a malha municipal do IBGE, gerando uma camada com geometria de cada municipio.
+Quando `nivel="municipio"`, marque "Join municipal" para transformar os dados tabulares em uma camada geoespacial. O plugin realiza um inner join entre a coluna `codigo_municipio` e a malha municipal do IBGE, gerando uma camada com geometria de cada município.
 
 ---
 
 ## Notas
 
 - Para PAM e PPM com join municipal, use `nivel="municipio"`.
-- A LSPA e mensal e nao suporta join municipal.
+- A LSPA é mensal e não suporta join municipal.

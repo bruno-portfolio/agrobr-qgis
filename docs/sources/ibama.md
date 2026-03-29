@@ -1,28 +1,28 @@
 # Embargos (IBAMA)
 
-Areas embargadas por infracoes ambientais.
+Áreas embargadas por infrações ambientais.
 
 ## Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **Embargos**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Filtrar por estado |
-| bbox | Bounding Box | Nao | Filtrar por area geografica |
+| uf | UF | Não | Filtrar por estado |
+| bbox | Bounding Box | Não | Filtrar por área geográfica |
 
 ## Capacidades
 
-- [x] Saida geoespacial — marque "Saida geoespacial" para obter geometrias
+- [x] Saída geoespacial — marque "Saída geoespacial" para obter geometrias
 - [ ] Filtro temporal
 - [x] Filtro por bounding box
 - [ ] Join municipal
 
 ## Notas
 
-- Dados de areas embargadas pelo IBAMA por infracoes ambientais.
+- Dados de áreas embargadas pelo IBAMA por infrações ambientais.

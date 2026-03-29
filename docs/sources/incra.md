@@ -1,29 +1,29 @@
 # Quilombolas (INCRA)
 
-Territorios quilombolas reconhecidos pelo INCRA.
+Territórios quilombolas reconhecidos pelo INCRA.
 
 ## Como usar
 
-1. No dock agrobr, expanda a categoria **Fundiario**
+1. No dock agrobr, expanda a categoria **Fundiário**
 2. Selecione **Quilombolas**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Filtrar por estado |
-| fase | Texto | Nao | Fase do processo |
-| bbox | Bounding Box | Nao | Filtrar por area geografica |
+| uf | UF | Não | Filtrar por estado |
+| fase | Texto | Não | Fase do processo |
+| bbox | Bounding Box | Não | Filtrar por área geográfica |
 
 ## Capacidades
 
-- [x] Saida geoespacial — marque "Saida geoespacial" para obter geometrias
+- [x] Saída geoespacial — marque "Saída geoespacial" para obter geometrias
 - [ ] Filtro temporal
 - [x] Filtro por bounding box
 - [ ] Join municipal
 
 ## Notas
 
-- Inclui territorios em todas as fases do processo de titulacao.
+- Inclui territórios em todas as fases do processo de titulação.

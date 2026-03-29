@@ -1,64 +1,64 @@
 # Fontes BCB
 
-Dados do Banco Central do Brasil — taxas de cambio, expectativas de mercado e series temporais.
+Dados do Banco Central do Brasil — taxas de câmbio, expectativas de mercado e séries temporais.
 
 ---
 
 ## PTAX (BCB)
 
-Taxa de cambio PTAX do Banco Central.
+Taxa de câmbio PTAX do Banco Central.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Mercado**
 2. Selecione **PTAX**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| data | Data | Nao | Data especifica |
-| data_inicial | Data | Nao | Inicio do periodo |
-| data_final | Data | Nao | Fim do periodo |
+| data | Data | Não | Data específica |
+| data_inicial | Data | Não | Início do período |
+| data_final | Data | Não | Fim do período |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [x] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
 
 ### Notas
 
-- Use `data` para consultar um dia especifico ou `data_inicial`/`data_final` para um periodo.
+- Use `data` para consultar um dia específico ou `data_inicial`/`data_final` para um período.
 
 ---
 
 ## Focus (BCB)
 
-Relatorio Focus — expectativas de mercado coletadas pelo Banco Central.
+Relatório Focus — expectativas de mercado coletadas pelo Banco Central.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Mercado**
 2. Selecione **Focus**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| indicador | Texto | Nao | Indicador economico (default: PIB Agropecuario) |
-| top | Inteiro | Nao | Top N instituicoes |
+| indicador | Texto | Não | Indicador econômico (default: PIB Agropecuário) |
+| top | Inteiro | Não | Top N instituições |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
@@ -67,28 +67,28 @@ Relatorio Focus — expectativas de mercado coletadas pelo Banco Central.
 
 ## SGS (BCB)
 
-Series temporais do Sistema Gerenciador de Series do Banco Central.
+Séries temporais do Sistema Gerenciador de Séries do Banco Central.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Mercado**
 2. Selecione **SGS**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| codigo | Inteiro | Sim | Codigo da serie SGS |
-| data_inicial | Data | Nao | Inicio do periodo |
-| data_final | Data | Nao | Fim do periodo |
-| ultimos | Inteiro | Nao | Retorna os N ultimos valores |
+| codigo | Inteiro | Sim | Código da série SGS |
+| data_inicial | Data | Não | Início do período |
+| data_final | Data | Não | Fim do período |
+| ultimos | Inteiro | Não | Retorna os N últimos valores |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [x] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
@@ -97,4 +97,4 @@ Series temporais do Sistema Gerenciador de Series do Banco Central.
 
 ## Notas
 
-- Consulte o catalogo SGS no site do BCB para encontrar o codigo da serie desejada.
+- Consulte o catálogo SGS no site do BCB para encontrar o código da série desejada.

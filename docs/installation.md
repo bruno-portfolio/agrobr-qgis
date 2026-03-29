@@ -1,14 +1,14 @@
-# Instalacao
+# Instalação
 
 ## Requisitos
 
-| Componente | Versao |
+| Componente | Versão |
 |------------|--------|
 | QGIS | 4.0+ |
 | Python | 3.12+ |
 | agrobr | >=1.0.0,<2.0.0 |
 
-> **QGIS 3.x nao e suportado.** O plugin targeta exclusivamente QGIS 4 / Qt6.
+> **QGIS 3.x não é suportado.** O plugin targeta exclusivamente QGIS 4 / Qt6.
 
 ## Via Plugin Manager (recomendado)
 
@@ -17,9 +17,9 @@
 3. Busque por **agrobr**
 4. Clique **Install Plugin**
 
-O plugin tenta instalar a dependencia `agrobr[geo]` automaticamente na primeira execucao. Se a instalacao automatica falhar, instale manualmente (veja abaixo).
+O plugin tenta instalar a dependência `agrobr[geo]` automaticamente na primeira execução. Se a instalação automática falhar, instale manualmente (veja abaixo).
 
-## Instalacao Manual
+## Instalação Manual
 
 ### 1. Instalar a biblioteca agrobr
 
@@ -37,7 +37,7 @@ python -m pip install agrobr[geo]
 
 ### 2. Copiar o plugin
 
-Copie a pasta `agrobr_qgis/` para o diretorio de plugins do QGIS:
+Copie a pasta `agrobr_qgis/` para o diretório de plugins do QGIS:
 
 - **Linux:** `~/.local/share/QGIS/QGIS4/profiles/default/python/plugins/`
 - **Windows:** `%APPDATA%\QGIS\QGIS4\profiles\default\python\plugins\`
@@ -53,17 +53,17 @@ Copie a pasta `agrobr_qgis/` para o diretorio de plugins do QGIS:
 
 ### Proxy
 
-O plugin propaga automaticamente as configuracoes de proxy do QGIS para a biblioteca agrobr. Configure o proxy em:
+O plugin propaga automaticamente as configurações de proxy do QGIS para a biblioteca agrobr. Configure o proxy em:
 
 **QGIS > Settings > Options > Network > Proxy**
 
-Se o proxy exigir autenticacao, preencha usuario e senha — o plugin codifica as credenciais corretamente na URL.
+Se o proxy exigir autenticação, preencha usuário e senha — o plugin codifica as credenciais corretamente na URL.
 
 ### Firewall
 
-O plugin acessa os seguintes dominios (lista parcial dos principais):
+O plugin acessa os seguintes domínios (lista parcial dos principais):
 
-| Dominio | Uso |
+| Domínio | Uso |
 |---------|-----|
 | `geoftp.ibge.gov.br` | Malha municipal para join espacial |
 | `agroapi.cnptia.embrapa.br` | Dados ZARC |
@@ -73,31 +73,31 @@ O plugin acessa os seguintes dominios (lista parcial dos principais):
 | `apps.fas.usda.gov` | Dados USDA PSD |
 | `olinda.bcb.gov.br` | Dados BCB (PTAX, Focus, SGS) |
 | `www.cepea.esalq.usp.br` | Indicadores CEPEA |
-| `pypi.org` | Auto-instalacao da biblioteca agrobr |
+| `pypi.org` | Auto-instalação da biblioteca agrobr |
 
 ### Uso Offline
 
-A biblioteca agrobr possui cache local. Apos o primeiro acesso a uma fonte, os dados ficam disponíveis offline (dependendo da configuracao de cache).
+A biblioteca agrobr possui cache local. Após o primeiro acesso a uma fonte, os dados ficam disponíveis offline (dependendo da configuração de cache).
 
-Para verificar se o cache esta ativo: **Dock agrobr > Configuracoes > Cache habilitado**.
+Para verificar se o cache está ativo: **Dock agrobr > Configurações > Cache habilitado**.
 
-## Verificacao
+## Verificação
 
 ### Plugin carregou corretamente?
 
 1. O dock **agrobr** aparece na lateral direita do QGIS
-2. A arvore de fontes mostra as categorias (Ambiental, Producao, Mercado, etc.)
+2. A árvore de fontes mostra as categorias (Ambiental, Produção, Mercado, etc.)
 
 ### Onde ver logs
 
 **QGIS > View > Log Messages > aba "agrobr"**
 
 Os logs mostram:
-- **Info**: operacoes normais (fetch, timing, rows retornados)
-- **Warning**: avisos de debug (stack traces, decisoes internas)
-- **Critical**: erros (falhas de fetch, problemas de autenticacao)
+- **Info**: operações normais (fetch, timing, rows retornados)
+- **Warning**: avisos de debug (stack traces, decisões internas)
+- **Critical**: erros (falhas de fetch, problemas de autenticação)
 
-### Verificar versao do agrobr
+### Verificar versão do agrobr
 
 No Python Console do QGIS (`Ctrl+Alt+P`):
 
@@ -106,7 +106,7 @@ import agrobr
 print(agrobr.__version__)
 ```
 
-## Desinstalacao
+## Desinstalação
 
 ### Via Plugin Manager
 
@@ -116,6 +116,6 @@ print(agrobr.__version__)
 
 ### Manual
 
-1. Remova a pasta `agrobr_qgis/` do diretorio de plugins
+1. Remova a pasta `agrobr_qgis/` do diretório de plugins
 2. (Opcional) Remova a biblioteca: `pip uninstall agrobr`
 3. (Opcional) Remova o cache de malhas: apague `~/.agrobr/meshes/`

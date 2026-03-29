@@ -1,30 +1,30 @@
-# Unidades de Conservacao (ICMBio)
+# Unidades de Conservação (ICMBio)
 
-Unidades de conservacao federais.
+Unidades de conservação federais.
 
 ## Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
-2. Selecione **Unidades de Conservacao**
-3. Preencha os parametros abaixo
+2. Selecione **Unidades de Conservação**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Filtrar por estado |
-| grupo | Texto | Nao | Grupo da UC (Protecao Integral, Uso Sustentavel) |
-| bioma | Texto | Nao | Filtrar por bioma |
-| bbox | Bounding Box | Nao | Filtrar por area geografica |
+| uf | UF | Não | Filtrar por estado |
+| grupo | Texto | Não | Grupo da UC (Proteção Integral, Uso Sustentável) |
+| bioma | Texto | Não | Filtrar por bioma |
+| bbox | Bounding Box | Não | Filtrar por área geográfica |
 
 ## Capacidades
 
-- [x] Saida geoespacial — marque "Saida geoespacial" para obter geometrias
+- [x] Saída geoespacial — marque "Saída geoespacial" para obter geometrias
 - [ ] Filtro temporal
 - [x] Filtro por bounding box
 - [ ] Join municipal
 
 ## Notas
 
-- Abrange unidades federais de Protecao Integral e Uso Sustentavel.
+- Abrange unidades federais de Proteção Integral e Uso Sustentável.

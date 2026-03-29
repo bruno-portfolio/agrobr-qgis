@@ -4,25 +4,25 @@ Dados do Sistema Nacional de Cadastro Ambiental Rural.
 
 ---
 
-## Imoveis Rurais (SICAR)
+## Imóveis Rurais (SICAR)
 
-Imoveis rurais do Cadastro Ambiental Rural.
+Imóveis rurais do Cadastro Ambiental Rural.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Fundiario**
-2. Selecione **Imoveis Rurais**
-3. Preencha os parametros abaixo
+1. No dock agrobr, expanda a categoria **Fundiário**
+2. Selecione **Imóveis Rurais**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Sim | Unidade da Federacao |
-| municipio | Texto | Nao | Nome do municipio |
-| status | Texto | Nao | Status do imovel no CAR |
-| tipo | Texto | Nao | Tipo do imovel |
+| uf | UF | Sim | Unidade da Federação |
+| municipio | Texto | Não | Nome do município |
+| status | Texto | Não | Status do imóvel no CAR |
+| tipo | Texto | Não | Tipo do imóvel |
 
 ### Capacidades
 
@@ -37,21 +37,21 @@ Imoveis rurais do Cadastro Ambiental Rural.
 
 ## Resumo CAR (SICAR)
 
-Resumo estatistico do CAR por municipio/UF.
+Resumo estatístico do CAR por município/UF.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Fundiario**
+1. No dock agrobr, expanda a categoria **Fundiário**
 2. Selecione **Resumo CAR**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Sim | Unidade da Federacao |
-| municipio | Texto | Nao | Nome do municipio |
+| uf | UF | Sim | Unidade da Federação |
+| municipio | Texto | Não | Nome do município |
 
 ### Capacidades
 
@@ -66,4 +66,4 @@ Resumo estatistico do CAR por municipio/UF.
 
 ## Notas
 
-Dados do SICAR sao acessados via `agrobr.alt` (modulo alternativo). A UF e obrigatoria para ambas as fontes.
+Dados do SICAR são acessados via `agrobr.alt` (módulo alternativo). A UF é obrigatória para ambas as fontes.

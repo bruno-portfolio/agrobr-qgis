@@ -1,26 +1,26 @@
-# Fontes ANA (Agencia Nacional de Aguas)
+# Fontes ANA (Agência Nacional de Águas)
 
-Dados hidrologicos e de irrigacao disponibilizados pela ANA via WFS.
+Dados hidrológicos e de irrigação disponibilizados pela ANA via WFS.
 
 ---
 
-## Demanda de Irrigacao (ANA)
+## Demanda de Irrigação (ANA)
 
-Dados de demanda de irrigacao por bacia hidrografica.
+Dados de demanda de irrigação por bacia hidrográfica.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
-2. Selecione **Demanda de Irrigacao**
-3. Preencha os parametros abaixo
+2. Selecione **Demanda de Irrigação**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bbox | Bounding Box | Sim | Area de interesse |
-| max_features | Inteiro | Nao | Limite de feicoes retornadas |
+| bbox | Bounding Box | Sim | Área de interesse |
+| max_features | Inteiro | Não | Limite de feições retornadas |
 
 ### Capacidades
 
@@ -33,23 +33,23 @@ Dados de demanda de irrigacao por bacia hidrografica.
 
 ---
 
-## Disponibilidade Hidrica (ANA)
+## Disponibilidade Hídrica (ANA)
 
-Dados de disponibilidade hidrica superficial e subterranea.
+Dados de disponibilidade hídrica superficial e subterrânea.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
-2. Selecione **Disponibilidade Hidrica**
-3. Preencha os parametros abaixo
+2. Selecione **Disponibilidade Hídrica**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bbox | Bounding Box | Nao | Area de interesse |
-| max_features | Inteiro | Nao | Limite de feicoes retornadas |
+| bbox | Bounding Box | Não | Área de interesse |
+| max_features | Inteiro | Não | Limite de feições retornadas |
 
 ### Capacidades
 
@@ -64,21 +64,21 @@ Dados de disponibilidade hidrica superficial e subterranea.
 
 ## Hidrografia (ANA)
 
-Rede hidrografica brasileira (rios, reservatorios, massas d'agua).
+Rede hidrográfica brasileira (rios, reservatórios, massas d'água).
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
 2. Selecione **Hidrografia**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bbox | Bounding Box | Sim | Area de interesse |
-| max_features | Inteiro | Nao | Limite de feicoes retornadas |
+| bbox | Bounding Box | Sim | Área de interesse |
+| max_features | Inteiro | Não | Limite de feições retornadas |
 
 ### Capacidades
 
@@ -91,24 +91,24 @@ Rede hidrografica brasileira (rios, reservatorios, massas d'agua).
 
 ---
 
-## Pivos de Irrigacao (ANA)
+## Pivôs de Irrigação (ANA)
 
-Mapeamento de pivos centrais de irrigacao identificados por sensoriamento remoto.
+Mapeamento de pivôs centrais de irrigação identificados por sensoriamento remoto.
 
 ### Como usar
 
 1. No dock agrobr, expanda a categoria **Ambiental**
-2. Selecione **Pivos de Irrigacao**
-3. Preencha os parametros abaixo
+2. Selecione **Pivôs de Irrigação**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| uf | UF | Nao | Unidade da Federacao |
-| bbox | Bounding Box | Nao | Area de interesse |
-| max_features | Inteiro | Nao | Limite de feicoes retornadas |
+| uf | UF | Não | Unidade da Federação |
+| bbox | Bounding Box | Não | Área de interesse |
+| max_features | Inteiro | Não | Limite de feições retornadas |
 
 ### Capacidades
 
@@ -123,4 +123,4 @@ Mapeamento de pivos centrais de irrigacao identificados por sensoriamento remoto
 
 ## Notas
 
-Fontes da ANA disponibilizadas via WFS. Para Demanda de Irrigacao e Hidrografia, o bounding box e obrigatorio.
+Fontes da ANA disponibilizadas via WFS. Para Demanda de Irrigação e Hidrografia, o bounding box é obrigatório.

@@ -1,32 +1,32 @@
 # PSD (USDA)
 
-Production, Supply & Distribution — dados de producao, oferta e distribuicao de commodities do USDA.
+Production, Supply & Distribution — dados de produção, oferta e distribuição de commodities do USDA.
 
 ## Como usar
 
 1. No dock agrobr, expanda a categoria **Mercado**
 2. Selecione **PSD**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-## Parametros
+## Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| commodity | Texto | Sim | Nome da commodity em ingles (ex: Soybeans, Corn, Cotton) |
-| country | Texto | Nao | Codigo do pais (default: BR) |
-| market_year | Inteiro | Nao | Ano-safra |
+| commodity | Texto | Sim | Nome da commodity em inglês (ex: Soybeans, Corn, Cotton) |
+| country | Texto | Não | Código do país (default: BR) |
+| market_year | Inteiro | Não | Ano-safra |
 
 ## Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
-- [x] Requer autenticacao
+- [x] Requer autenticação
 
-## Autenticacao
+## Autenticação
 
 Esta fonte requer uma chave de API do USDA (`USDA_API_KEY`).
 
@@ -36,4 +36,4 @@ Esta fonte requer uma chave de API do USDA (`USDA_API_KEY`).
 
 ## Notas
 
-- Fonte tabular. Nomes de commodities devem ser informados em ingles.
+- Fonte tabular. Nomes de commodities devem ser informados em inglês.

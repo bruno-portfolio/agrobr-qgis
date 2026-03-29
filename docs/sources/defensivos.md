@@ -1,6 +1,6 @@
 # Fontes Defensivos (MAPA)
 
-Dados de defensivos agricolas registrados no Ministerio da Agricultura.
+Dados de defensivos agrícolas registrados no Ministério da Agricultura.
 
 ---
 
@@ -10,82 +10,82 @@ Produtos formulados de defensivos registrados no MAPA.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Regulatorio**
+1. No dock agrobr, expanda a categoria **Regulatório**
 2. Selecione **Defensivos Formulados**
-3. Preencha os parametros abaixo
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| ingrediente_ativo | Texto | Nao | Filtrar por ingrediente ativo |
-| classe | Texto | Nao | Classe do produto |
-| titular | Texto | Nao | Empresa titular do registro |
-| marca | Texto | Nao | Nome comercial do produto |
+| ingrediente_ativo | Texto | Não | Filtrar por ingrediente ativo |
+| classe | Texto | Não | Classe do produto |
+| titular | Texto | Não | Empresa titular do registro |
+| marca | Texto | Não | Nome comercial do produto |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
 
 ---
 
-## Autorizacoes de Defensivos (MAPA)
+## Autorizações de Defensivos (MAPA)
 
-Autorizacoes de uso de defensivos por cultura.
+Autorizações de uso de defensivos por cultura.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Regulatorio**
-2. Selecione **Autorizacoes de Defensivos**
-3. Preencha os parametros abaixo
+1. No dock agrobr, expanda a categoria **Regulatório**
+2. Selecione **Autorizações de Defensivos**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| cultura | Texto | Nao | Cultura autorizada |
-| ingrediente_ativo | Texto | Nao | Filtrar por ingrediente ativo |
-| nr_registro | Texto | Nao | Numero de registro |
+| cultura | Texto | Não | Cultura autorizada |
+| ingrediente_ativo | Texto | Não | Filtrar por ingrediente ativo |
+| nr_registro | Texto | Não | Número de registro |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
 
 ---
 
-## Defensivos Tecnicos (MAPA)
+## Defensivos Técnicos (MAPA)
 
-Produtos tecnicos de defensivos registrados no MAPA.
+Produtos técnicos de defensivos registrados no MAPA.
 
 ### Como usar
 
-1. No dock agrobr, expanda a categoria **Regulatorio**
-2. Selecione **Defensivos Tecnicos**
-3. Preencha os parametros abaixo
+1. No dock agrobr, expanda a categoria **Regulatório**
+2. Selecione **Defensivos Técnicos**
+3. Preencha os parâmetros abaixo
 4. Clique em **Buscar Dados**
 
-### Parametros
+### Parâmetros
 
-| Parametro | Tipo | Obrigatorio | Descricao |
+| Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| ingrediente_ativo | Texto | Nao | Filtrar por ingrediente ativo |
-| titular | Texto | Nao | Empresa titular do registro |
-| classe | Texto | Nao | Classe do produto |
+| ingrediente_ativo | Texto | Não | Filtrar por ingrediente ativo |
+| titular | Texto | Não | Empresa titular do registro |
+| classe | Texto | Não | Classe do produto |
 
 ### Capacidades
 
-- [x] Saida tabular
-- [ ] Saida geoespacial
+- [x] Saída tabular
+- [ ] Saída geoespacial
 - [ ] Filtro temporal
 - [ ] Filtro por bounding box
 - [ ] Join municipal
@@ -94,5 +94,5 @@ Produtos tecnicos de defensivos registrados no MAPA.
 
 ## Notas
 
-- Todas as fontes de defensivos sao tabulares.
+- Todas as fontes de defensivos são tabulares.
 - Use o filtro por ingrediente ativo para refinar a busca.

@@ -68,9 +68,17 @@ CONAB, IBGE, ZARC.
 
 Fontes tabulares podem ser convertidas em camadas geoespaciais via **join municipal automático** com a malha IBGE.
 
+### Templates
+
+Workflows pré-configurados que combinam múltiplas fontes em um clique:
+
+- **Raio-X Ambiental** — Queimadas, DETER, Embargos, SICAR e UCs para uma UF
+- **Análise de Produção** — PAM (IBGE) e Série Histórica (CONAB) para um produto
+- **Risco Climático** — ZARC e PAM para avaliar risco de uma cultura
+
 ### Processing Toolbox
 
-Cada fonte também está disponível como algoritmo no Processing Toolbox do QGIS, permitindo uso em modelos e scripts.
+Cada fonte também está disponível como algoritmo no Processing Toolbox do QGIS, permitindo uso em modelos, batch processing e scripts.
 
 ## Funcionalidades
 
@@ -82,6 +90,11 @@ Cada fonte também está disponível como algoritmo no Processing Toolbox do QGI
 - **Busca de fontes** — filtro por nome, descrição ou categoria
 - **Health check** — status online/offline por fonte
 - **Proxy corporativo** — propaga configuração de proxy do QGIS automaticamente
+- **Animação temporal** — fontes com dimensão temporal (queimadas, DETER, MapBiomas)
+- **Estilos automáticos** — simbologia QML por tipo de geometria
+- **Templates** — workflows multi-fonte pré-configurados
+- **Persistência** — parâmetros salvos junto com o projeto QGIS
+- **Post-fetch** — abrir tabela, salvar como (GPKG/GeoJSON/SHP), ver origem
 
 ## Arquitetura
 

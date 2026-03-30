@@ -83,7 +83,7 @@ Para verificar se o cache está ativo: **Dock agrobr > Configurações > Cache h
 ### Plugin carregou corretamente?
 
 1. O dock **agrobr** aparece na lateral direita do QGIS
-2. A árvore de fontes mostra as categorias (Ambiental, Produção, Mercado, etc.)
+2. A árvore de fontes mostra as categorias (Ambiental, Produção, Fundiário, Regulatório)
 
 ### Onde ver logs
 

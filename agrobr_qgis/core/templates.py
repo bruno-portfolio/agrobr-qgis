@@ -48,7 +48,7 @@ TemplateRegistry.register(
 TemplateRegistry.register(
     Template(
         id="analise_producao",
-        name="Analise de Producao",
+        name="Análise de Produção",
         description="PAM e serie historica CONAB para um produto",
         category="Producao",
         source_ids=("ibge_pam", "conab_serie_historica"),
@@ -81,7 +81,7 @@ TemplateRegistry.register(
 TemplateRegistry.register(
     Template(
         id="risco_climatico",
-        name="Risco Climatico",
+        name="Risco Climático",
         description="ZARC e PAM para avaliar risco de uma cultura",
         category="Clima",
         source_ids=("zarc_zoneamento", "ibge_pam"),

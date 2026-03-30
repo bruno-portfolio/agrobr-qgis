@@ -16,4 +16,4 @@ hasProcessingProvider=yes
 experimental=True
 deprecated=False
 changelog=
-    0.1.0 - Release inicial
+    0.1.0 - Release inicial: 24 fontes (GUI + Processing Toolbox), 3 templates, join municipal, health check, estilos QML

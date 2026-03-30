@@ -48,28 +48,12 @@ class ConabSafrasSource(SourceAdapter):
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:
-        return [
-            SourceParameter(
-                name="produto",
-                label="Produto",
-                param_type=ParamType.STRING,
-            ),
-            SourceParameter(
-                name="safra",
-                label="Safra",
-                param_type=ParamType.STRING,
-            ),
-            SourceParameter(
-                name="uf",
-                label="UF",
-                param_type=ParamType.UF,
-            ),
-        ]
+        return []
 
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:  # noqa: ARG002
         from agrobr.sync import conab  # type: ignore[import-untyped]
 
-        result: pd.DataFrame = conab.levantamentos(**kwargs)
+        result: pd.DataFrame = pd.DataFrame(conab.levantamentos())
         return result
 
 

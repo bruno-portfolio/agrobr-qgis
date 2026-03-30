@@ -65,12 +65,13 @@ class SicarImoveisSource(SourceAdapter):
         ]
 
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
+        import asyncio
+        import inspect
+
         from agrobr.alt import sicar  # type: ignore[import-untyped]
 
-        if geo:
-            result: pd.DataFrame = sicar.imoveis_geo(**kwargs)  # type: ignore[assignment]
-        else:
-            result = sicar.imoveis(**kwargs)  # type: ignore[assignment]
+        coro = sicar.imoveis_geo(**kwargs) if geo else sicar.imoveis(**kwargs)
+        result: pd.DataFrame = asyncio.run(coro) if inspect.isawaitable(coro) else coro  # type: ignore[assignment,arg-type]
         return result
 
 
@@ -113,7 +114,11 @@ class SicarResumoSource(SourceAdapter):
         ]
 
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:  # noqa: ARG002
+        import asyncio
+        import inspect
+
         from agrobr.alt import sicar  # type: ignore[import-untyped]
 
-        result: pd.DataFrame = sicar.resumo(**kwargs)  # type: ignore[assignment]
+        coro = sicar.resumo(**kwargs)
+        result: pd.DataFrame = asyncio.run(coro) if inspect.isawaitable(coro) else coro  # type: ignore[assignment,arg-type]
         return result

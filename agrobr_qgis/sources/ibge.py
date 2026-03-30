@@ -82,7 +82,8 @@ class IbgePamSource(SourceAdapter):
         from agrobr.sync import ibge  # type: ignore[import-untyped]
 
         result: pd.DataFrame = ibge.pam(**kwargs)
-        if "localidade" in result.columns:
+        nivel = kwargs.get("nivel", "uf")
+        if nivel == "municipio" and "localidade" in result.columns:
             from agrobr_qgis.core.spatial_join import SpatialJoin
 
             result["codigo_municipio"] = SpatialJoin.localidade_to_code(result["localidade"])
@@ -212,7 +213,8 @@ class IbgePpmSource(SourceAdapter):
         from agrobr.sync import ibge  # type: ignore[import-untyped]
 
         result: pd.DataFrame = ibge.ppm(**kwargs)
-        if "localidade" in result.columns:
+        nivel = kwargs.get("nivel", "uf")
+        if nivel == "municipio" and "localidade" in result.columns:
             from agrobr_qgis.core.spatial_join import SpatialJoin
 
             result["codigo_municipio"] = SpatialJoin.localidade_to_code(result["localidade"])

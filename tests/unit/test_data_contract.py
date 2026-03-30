@@ -48,7 +48,7 @@ class TestDataContract:
 
     def test_timezone_strip_single_warning(self) -> None:
         dates_a = pd.to_datetime(["2026-01-01"]).tz_localize("UTC")
-        dates_b = pd.to_datetime(["2026-06-01"]).tz_localize("US/Eastern")
+        dates_b = pd.to_datetime(["2026-06-01"]).tz_localize("America/Sao_Paulo")
         df = pd.DataFrame({"ts_a": dates_a, "ts_b": dates_b})
         result = DataContract.validate(df)
         tz_warnings = [w for w in result.warnings if "Timezone" in w]

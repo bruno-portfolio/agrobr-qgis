@@ -137,7 +137,7 @@ class LayerBuilder:
         with cls._temp_lock:
             tmp_dir = cls._get_temp_dir()
             name_seed = f"{layer_name}_{time.time()}"
-            suffix = f"_agrobr_{hashlib.md5(name_seed.encode()).hexdigest()[:8]}.gpkg"  # noqa: S324
+            suffix = f"_agrobr_{hashlib.md5(name_seed.encode(), usedforsecurity=False).hexdigest()[:8]}.gpkg"
             tmp_path = tmp_dir / f"{layer_name}{suffix}"
         gdf.to_file(tmp_path, driver="GPKG")
         layer = QgsVectorLayer(str(tmp_path), layer_name, "ogr")

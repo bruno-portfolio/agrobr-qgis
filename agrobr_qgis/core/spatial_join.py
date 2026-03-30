@@ -79,6 +79,9 @@ class SpatialJoin:
 
     @classmethod
     def _download_and_verify(cls, url: str, dest: Path, expected_sha256: str) -> None:
+        if not url.startswith("https://"):
+            msg = f"URL insegura rejeitada: {url}"
+            raise ValueError(msg)
         sha = hashlib.sha256()
         with urllib.request.urlopen(url, timeout=120) as response, dest.open("wb") as f:  # noqa: S310
             while chunk := response.read(65_536):

@@ -16,6 +16,7 @@ class agrobrPlugin:
         os.environ.setdefault("AGROBR_LOG_LEVEL", "WARNING")
 
         from qgis.core import QgsApplication  # type: ignore[import-untyped]
+        from qgis.PyQt.QtWidgets import QAction  # type: ignore[import-untyped]
 
         from . import sources  # noqa: F401
         from .core import templates  # noqa: F401
@@ -23,9 +24,6 @@ class agrobrPlugin:
 
         self._provider = agrobrProvider()
         QgsApplication.processingRegistry().addProvider(self._provider)  # pragma: no cover
-
-        from qgis.PyQt.QtWidgets import QAction  # type: ignore[import-untyped]
-
         from .core.logger import Logger
         from .gui.dock import MainDock
 

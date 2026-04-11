@@ -13,6 +13,7 @@ __all__ = [
     "ana",
     "sfb",
     "mapbiomas_alerta",
+    "mapbiomas_cobertura",
     "sicar",
     "conab",
     "ibge",

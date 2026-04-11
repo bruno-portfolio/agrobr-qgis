@@ -20,13 +20,14 @@ _SOURCE_MODULES = [
     "ana",
     "sfb",
     "mapbiomas_alerta",
+    "mapbiomas_cobertura",
     "sicar",
     "conab",
     "ibge",
     "zarc",
 ]
 
-_SYNC_MODULES = [m for m in _SOURCE_MODULES if m != "sicar"]
+_SYNC_MODULES = [m for m in _SOURCE_MODULES if m not in ("sicar", "mapbiomas_cobertura")]
 
 
 @pytest.fixture(autouse=True)

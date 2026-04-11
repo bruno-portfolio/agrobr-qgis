@@ -13,9 +13,12 @@ class agrobrProvider(QgsProcessingProvider):  # type: ignore[misc]  # pragma: no
     def loadAlgorithms(self) -> None:  # noqa: N802
         from agrobr_qgis import sources  # noqa: F401
         from agrobr_qgis.core.registry import SourceRegistry
+        from agrobr_qgis.core.source_adapter import SourceCapability
 
         from .algorithms._factory import make_algorithm
 
         for source_cls in SourceRegistry.list_all():
+            if source_cls.capabilities() & SourceCapability.TILE_SERVICE:
+                continue
             algo_cls = make_algorithm(source_cls)
             self.addAlgorithm(algo_cls())

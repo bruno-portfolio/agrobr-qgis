@@ -190,6 +190,12 @@ class MainDock:  # pragma: no cover
         if cached:
             self._param_panel.restore_params(cached)
 
+        from agrobr_qgis.core.source_adapter import SourceCapability
+
+        is_tile = bool(adapter_cls.capabilities() & SourceCapability.TILE_SERVICE)
+        self._fetch_button.setText(
+            self._dock_tr("Adicionar Camada") if is_tile else self._dock_tr("Buscar Dados")
+        )
         self._apply_state(DockState.SELECTED)
         self._fetch_button.setEnabled(not self._param_panel.has_auth_warning())
 
@@ -214,6 +220,14 @@ class MainDock:  # pragma: no cover
         if not self._current_source_id:
             return
 
+        from agrobr_qgis.core.registry import SourceRegistry
+        from agrobr_qgis.core.source_adapter import SourceCapability
+
+        adapter_cls = SourceRegistry.get(self._current_source_id)
+        if adapter_cls and adapter_cls.capabilities() & SourceCapability.TILE_SERVICE:
+            self._on_add_tile(adapter_cls)
+            return
+
         params = self._param_panel.collect_params()
         self._param_cache.save(self._current_source_id, params)
 
@@ -232,6 +246,32 @@ class MainDock:  # pragma: no cover
         self._apply_state(DockState.LOADING)
         name = adapter_cls.name() if adapter_cls else self._current_source_id
         self._status_label.setText(self._dock_tr("Buscando {}...").format(name))
+
+    def _on_add_tile(self, adapter_cls: type[Any]) -> None:
+        from qgis.core import QgsProject  # type: ignore[import-untyped]
+
+        from agrobr_qgis.core.layer_builder import LayerBuilder
+
+        params = self._param_panel.collect_params()
+        if self._current_source_id:
+            self._param_cache.save(self._current_source_id, params)
+        uri = adapter_cls.tile_uri(**params)
+        if not uri:
+            self._on_error_internal(self._dock_tr("URI de tile nao gerada"))
+            return
+        layer_name = f"agrobr \u2014 {adapter_cls.name()}"
+        if params.get("ano"):
+            layer_name = f"{layer_name} ({params['ano']})"
+        layer = LayerBuilder.from_tile_uri(uri, layer_name)
+        if not layer.isValid():
+            self._on_error_internal(self._dock_tr("Camada WMS invalida \u2014 verifique a conexao"))
+            return
+        if adapter_cls.source_url():
+            layer.serverProperties().setAttribution(adapter_cls.name())
+            layer.serverProperties().setAttributionUrl(adapter_cls.source_url())
+        QgsProject.instance().addMapLayer(layer)
+        self._added_layer = layer
+        self._logger.user(f"Camada adicionada: '{layer_name}'")
 
     def _on_template_fetch(self) -> None:
         if not self._current_template:

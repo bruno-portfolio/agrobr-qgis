@@ -44,6 +44,12 @@ class LayerBuilder:
         return str(path) if path.exists() else None
 
     @classmethod
+    def from_tile_uri(cls, uri: str, layer_name: str) -> Any:  # pragma: no cover
+        from qgis.core import QgsRasterLayer  # type: ignore[import-untyped]
+
+        return QgsRasterLayer(uri, layer_name, "wms")
+
+    @classmethod
     def from_contract_result(  # pragma: no cover
         cls,
         result: ContractResult,

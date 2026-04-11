@@ -24,6 +24,7 @@ class SourceCapability(Flag):
     PREVIEW = auto()
     PAGINATION = auto()
     MUNICIPAL_JOIN = auto()
+    TILE_SERVICE = auto()
 
 
 class ParamType(StrEnum):
@@ -102,6 +103,10 @@ class SourceAdapter(ABC):
 
     @classmethod
     def health_url(cls) -> str | None:
+        return None
+
+    @classmethod
+    def tile_uri(cls, **kwargs: Any) -> str | None:  # noqa: ARG003
         return None
 
     @abstractmethod

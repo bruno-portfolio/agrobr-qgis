@@ -51,6 +51,7 @@ class SicarImoveisSource(SourceAdapter):
                 name="municipio",
                 label="Município",
                 param_type=ParamType.STRING,
+                help_text="Nome inteiro ou código IBGE",
             ),
             SourceParameter(
                 name="status",
@@ -110,6 +111,7 @@ class SicarResumoSource(SourceAdapter):
                 name="municipio",
                 label="Município",
                 param_type=ParamType.STRING,
+                help_text="Nome inteiro ou código IBGE",
             ),
         ]
 

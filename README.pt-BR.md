@@ -21,7 +21,7 @@ Centraliza 24 fontes de dados agrícolas brasileiros (IBGE, CONAB, INPE, IBAMA, 
 |------------|--------|
 | QGIS | 4.0+ |
 | Python | 3.12+ |
-| agrobr | >=1.0.0,<2.0.0 |
+| agrobr | >=2.0.0,<3.0.0 |
 
 > **QGIS 3.x não é suportado.** O plugin targeta exclusivamente QGIS 4 / Qt6.
 
@@ -34,12 +34,12 @@ Centraliza 24 fontes de dados agrícolas brasileiros (IBGE, CONAB, INPE, IBAMA, 
 3. Busque por **agrobr**
 4. Clique **Install Plugin**
 
-O plugin instala a dependência `agrobr[geo]` automaticamente na primeira execução.
+O plugin instala a dependência `agrobr[geo]` (2.x) automaticamente na primeira execução. Com a agrobr 1.x já instalada, ele pergunta antes de atualizá-la para a 2.x; com uma major mais nova, mostra uma mensagem e nunca a rebaixa.
 
 ### Manual
 
 ```bash
-pip install agrobr[geo]
+pip install "agrobr[geo]>=2.0.0,<3"
 ```
 
 Copie a pasta `agrobr_qgis/` para o diretório de plugins do QGIS:
@@ -112,7 +112,7 @@ agrobr_qgis/
 git clone https://github.com/bruno-portfolio/agrobr-qgis.git
 cd agrobr-qgis
 
-pip install ruff mypy pytest pytest-cov agrobr[geo]
+pip install ruff mypy pytest pytest-cov "agrobr[geo]>=2.0.0,<3"
 pre-commit install
 ```
 

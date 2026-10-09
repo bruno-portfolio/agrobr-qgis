@@ -50,8 +50,8 @@ Série histórica de produção agrícola.
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | produto | Texto | Sim | Produto agrícola |
-| inicio | Inteiro | Não | Ano inicial |
-| fim | Inteiro | Não | Ano final |
+| ano_inicio | Inteiro | Não | Ano inicial |
+| ano_fim | Inteiro | Não | Ano final |
 | uf | UF | Não | Unidade da Federação |
 
 ### Capacidades

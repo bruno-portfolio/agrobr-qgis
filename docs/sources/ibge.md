@@ -105,4 +105,5 @@ Quando `nivel="municipio"`, marque "Join municipal" para transformar os dados ta
 ## Notas
 
 - Para PAM e PPM com join municipal, use `nivel="municipio"`.
+- Com UF, use `nivel` `uf` ou `municipio`: com `brasil`, a agrobr recusa a combinação, que devolveria o agregado do país sem o filtro.
 - A LSPA é mensal e não suporta join municipal.

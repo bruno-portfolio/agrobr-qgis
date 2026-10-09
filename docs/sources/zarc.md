@@ -13,9 +13,9 @@ Zoneamento Agrícola de Risco Climático — define períodos de plantio com men
 
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| cultura | Texto | Não | Nome da cultura |
+| produto | Texto | Não | Cultura: rótulo oficial ou chave (ex: soja) |
 | uf | UF | Não | Filtrar por estado |
-| municipio | Texto | Não | Nome do município |
+| municipio | Texto | Não | Nome inteiro ou código IBGE do município |
 | safra | Texto | Não | Safra de referência |
 
 ## Capacidades

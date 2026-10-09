@@ -89,13 +89,13 @@ class ConabSerieHistoricaSource(SourceAdapter):
                 required=True,
             ),
             SourceParameter(
-                name="inicio",
+                name="ano_inicio",
                 label="Ano inicial",
                 param_type=ParamType.INT,
                 help_text="Ano inicial",
             ),
             SourceParameter(
-                name="fim",
+                name="ano_fim",
                 label="Ano final",
                 param_type=ParamType.INT,
                 help_text="Ano final",

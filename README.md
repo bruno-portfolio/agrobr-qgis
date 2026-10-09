@@ -21,7 +21,7 @@ Centralizes 24 Brazilian agricultural data sources (IBGE, CONAB, INPE, IBAMA, Ma
 |-----------|---------|
 | QGIS | 4.0+ |
 | Python | 3.12+ |
-| agrobr | >=1.0.0,<2.0.0 |
+| agrobr | >=2.0.0,<3.0.0 |
 
 > **QGIS 3.x is not supported.** This plugin targets QGIS 4 / Qt6 exclusively.
 
@@ -34,12 +34,12 @@ Centralizes 24 Brazilian agricultural data sources (IBGE, CONAB, INPE, IBAMA, Ma
 3. Search for **agrobr**
 4. Click **Install Plugin**
 
-The plugin auto-installs the `agrobr[geo]` dependency on first run.
+The plugin auto-installs the `agrobr[geo]` dependency (2.x) on first run. With agrobr 1.x already installed, it asks before upgrading it to 2.x; with a newer major, it shows a message and never downgrades it.
 
 ### Manual
 
 ```bash
-pip install agrobr[geo]
+pip install "agrobr[geo]>=2.0.0,<3"
 ```
 
 Copy the `agrobr_qgis/` folder to the QGIS plugins directory:
@@ -114,7 +114,7 @@ agrobr_qgis/
 git clone https://github.com/bruno-portfolio/agrobr-qgis.git
 cd agrobr-qgis
 
-pip install ruff mypy pytest pytest-cov agrobr[geo]
+pip install ruff mypy pytest pytest-cov "agrobr[geo]>=2.0.0,<3"
 pre-commit install
 ```
 

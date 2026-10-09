@@ -41,7 +41,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: "pip"
-      - run: pip install pytest pytest-cov agrobr[geo]
+      - run: pip install pytest pytest-cov "agrobr[geo]>=2.0.0,<3"
       - run: >
           pytest tests/unit/ -v
           --cov=agrobr_qgis --cov-report=term-missing
@@ -54,5 +54,5 @@ jobs:
       image: qgis/qgis:4.0-trixie
     steps:
       - uses: actions/checkout@v4
-      - run: pip install --break-system-packages --ignore-installed pytest pytest-qgis agrobr[geo]
+      - run: pip install --break-system-packages --ignore-installed pytest pytest-qgis "agrobr[geo]>=2.0.0,<3"
       - run: xvfb-run pytest tests/qgis/ -v || [ $? -eq 5 ]

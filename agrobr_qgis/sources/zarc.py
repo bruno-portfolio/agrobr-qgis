@@ -46,7 +46,7 @@ class ZarcZoneamentoSource(SourceAdapter):
     def parameters(cls) -> list[SourceParameter]:
         return [
             SourceParameter(
-                name="cultura",
+                name="produto",
                 label="Cultura",
                 param_type=ParamType.STRING,
             ),
@@ -59,6 +59,7 @@ class ZarcZoneamentoSource(SourceAdapter):
                 name="municipio",
                 label="Município",
                 param_type=ParamType.STRING,
+                help_text="Nome inteiro ou código IBGE",
             ),
             SourceParameter(
                 name="safra",

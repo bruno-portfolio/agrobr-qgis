@@ -6,7 +6,7 @@
 |------------|--------|
 | QGIS | 4.0+ |
 | Python | 3.12+ |
-| agrobr | >=1.0.0,<2.0.0 |
+| agrobr | >=2.0.0,<3.0.0 |
 
 > **QGIS 3.x não é suportado.** O plugin targeta exclusivamente QGIS 4 / Qt6.
 
@@ -17,7 +17,7 @@
 3. Busque por **agrobr**
 4. Clique **Install Plugin**
 
-O plugin tenta instalar a dependência `agrobr[geo]` automaticamente na primeira execução. Se a instalação automática falhar, instale manualmente (veja abaixo).
+O plugin tenta instalar a dependência `agrobr[geo]` (2.x) automaticamente na primeira execução. Com a agrobr 1.x já instalada, ele pergunta antes de atualizá-la para a 2.x; com uma major mais nova, mostra uma mensagem e nunca a rebaixa. Se a instalação automática falhar, instale manualmente (veja abaixo).
 
 ## Instalação Manual
 
@@ -26,13 +26,13 @@ O plugin tenta instalar a dependência `agrobr[geo]` automaticamente na primeira
 No terminal do Python do QGIS ou no terminal do sistema:
 
 ```bash
-pip install agrobr[geo]
+pip install "agrobr[geo]>=2.0.0,<3"
 ```
 
 No Windows com OSGeo4W, use o **OSGeo4W Shell**:
 
 ```bash
-python -m pip install agrobr[geo]
+python -m pip install "agrobr[geo]>=2.0.0,<3"
 ```
 
 ### 2. Copiar o plugin

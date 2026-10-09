@@ -160,9 +160,10 @@ class ParamPanel:  # pragma: no cover
         )
 
         result: dict[str, Any] = {}
-        for name, (_param, widget) in self._widgets.items():
+        for name, (param, widget) in self._widgets.items():
             if isinstance(widget, QSpinBox):
-                result[name] = widget.value()
+                if widget.value() or param.required:
+                    result[name] = widget.value()
             elif isinstance(widget, QDateEdit):
                 result[name] = widget.date().toString("yyyy-MM-dd")
             elif isinstance(widget, QComboBox):

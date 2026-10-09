@@ -20,7 +20,7 @@ Dados de demanda de irrigação por bacia hidrográfica.
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | bbox | Bounding Box | Sim | Área de interesse |
-| max_features | Inteiro | Não | Limite de feições retornadas |
+| max_registros | Inteiro | Não | Teto de registros retornados (vazio: o da agrobr) |
 
 ### Capacidades
 
@@ -49,7 +49,7 @@ Dados de disponibilidade hídrica superficial e subterrânea.
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | bbox | Bounding Box | Não | Área de interesse |
-| max_features | Inteiro | Não | Limite de feições retornadas |
+| max_registros | Inteiro | Não | Teto de registros retornados (vazio: o da agrobr) |
 
 ### Capacidades
 
@@ -78,7 +78,7 @@ Rede hidrográfica brasileira (rios, reservatórios, massas d'água).
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | bbox | Bounding Box | Sim | Área de interesse |
-| max_features | Inteiro | Não | Limite de feições retornadas |
+| max_registros | Inteiro | Não | Teto de registros retornados (vazio: o da agrobr) |
 
 ### Capacidades
 
@@ -108,7 +108,7 @@ Mapeamento de pivôs centrais de irrigação identificados por sensoriamento rem
 |-----------|------|:-----------:|-----------|
 | uf | UF | Não | Unidade da Federação |
 | bbox | Bounding Box | Não | Área de interesse |
-| max_features | Inteiro | Não | Limite de feições retornadas |
+| max_registros | Inteiro | Não | Teto de registros retornados (vazio: o da agrobr) |
 
 ### Capacidades
 

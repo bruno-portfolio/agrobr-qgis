@@ -32,7 +32,7 @@ python -m venv .venv
 source .venv/bin/activate   # Linux/Mac
 # .venv\Scripts\activate    # Windows
 
-pip install ruff mypy pytest pytest-cov pandas-stubs agrobr[geo]
+pip install ruff mypy pytest pytest-cov pandas-stubs "agrobr[geo]>=2.0.0,<3"
 pre-commit install
 ```
 
@@ -48,7 +48,7 @@ QGIS tests require Docker:
 
 ```bash
 docker run --rm -v $(pwd):/workspace qgis/qgis:4.0-trixie bash -c \
-  "pip install pytest pytest-qgis agrobr[geo] && xvfb-run pytest /workspace/tests/qgis/ -v"
+  "pip install pytest pytest-qgis 'agrobr[geo]>=2.0.0,<3' && xvfb-run pytest /workspace/tests/qgis/ -v"
 ```
 
 Coverage gate is **85%** with branch coverage.

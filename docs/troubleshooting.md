@@ -8,10 +8,34 @@
 
 **Solução:**
 1. Abra o terminal do QGIS (ou OSGeo4W Shell no Windows)
-2. Execute: `pip install agrobr[geo]`
+2. Execute: `pip install "agrobr[geo]>=2.0.0,<3"`
 3. Reinicie o QGIS
 
 **Verificação:** No Python Console do QGIS (`Ctrl+Alt+P`): `import agrobr`
+
+### "agrobr 1.x instalada; este plugin usa a agrobr 2.x"
+
+**Causa:** O Python do QGIS tem a agrobr 1.x, que o plugin 0.1.x instalou, e esta versão do plugin (0.2.x) usa a agrobr 2.x. Na carga, o plugin pergunta se pode atualizar a biblioteca; esta mensagem aparece quando a resposta é não.
+
+**Solução:**
+1. Atualize a agrobr no Python do QGIS: `pip install "agrobr[geo]>=2.0.0,<3"`
+2. Reinicie o QGIS
+3. Se outro programa seu precisa da agrobr 1.x no mesmo Python, volte ao plugin 0.1.x (**Plugins > Manage and Install Plugins > Install from ZIP**)
+
+### "agrobr atualizada de 1.x para 2.x. Reinicie o QGIS"
+
+**Causa:** Você aceitou a atualização da agrobr na carga do plugin. A versão antiga continua carregada até o QGIS reiniciar.
+
+**Solução:** Reinicie o QGIS.
+
+### "agrobr 3.x não é compatível com esta versão do plugin"
+
+**Causa:** O Python do QGIS tem uma agrobr de major mais nova, e esta versão do plugin (0.2.x) usa a agrobr 2.x. O plugin não rebaixa a biblioteca sozinho, porque outros programas seus podem depender dela.
+
+**Solução:**
+1. Atualize o plugin agrobr em **Plugins > Manage and Install Plugins**
+2. Ou instale a agrobr 2.x no Python do QGIS: `pip install "agrobr[geo]>=2.0.0,<3"`
+3. Reinicie o QGIS
 
 ### "pip não encontrado"
 
@@ -27,8 +51,8 @@
 **Causa:** O `pip install` falhou (permissões, conflito de dependências, rede).
 
 **Solução:**
-1. Tente manualmente: `pip install agrobr[geo] --user`
-2. Se houver conflito: `pip install agrobr[geo] --force-reinstall`
+1. Tente manualmente: `pip install "agrobr[geo]>=2.0.0,<3" --user`
+2. Se houver conflito: `pip install "agrobr[geo]>=2.0.0,<3" --force-reinstall`
 3. Verifique se o Python do QGIS é o mesmo do terminal: `python -c "import sys; print(sys.executable)"`
 
 ### "Timeout na instalação"
@@ -37,7 +61,7 @@
 
 **Solução:**
 1. Verifique a conexão com a internet
-2. Instale manualmente sem timeout: `pip install agrobr[geo]`
+2. Instale manualmente sem timeout: `pip install "agrobr[geo]>=2.0.0,<3"`
 3. Se estiver atrás de proxy, configure antes: veja [Proxy](#proxy-corporativo)
 
 ---
@@ -58,7 +82,7 @@
 **Causa:** A fonte requer autenticação e o token não foi configurado.
 
 **Fontes que requerem token:**
-- **MapBiomas Alertas** — variável: `MAPBIOMAS_TOKEN`
+- **MapBiomas Alertas** — variável: `AGROBR_MAPBIOMAS_ALERTA_TOKEN`
 - **USDA PSD** — variável: `USDA_API_KEY`
 
 **Solução:**
@@ -92,7 +116,7 @@ Os tokens são armazenados de forma cifrada pelo QgsAuthManager do QGIS.
 **Causa:** Os dados retornados pela fonte estão em formato diferente do esperado.
 
 **Solução:**
-1. Verifique se a biblioteca agrobr está atualizada: `pip install --upgrade agrobr[geo]`
+1. Verifique se a biblioteca agrobr está atualizada: `pip install --upgrade "agrobr[geo]>=2.0.0,<3"`
 2. Se persistir, reporte como bug (veja [Como reportar](#como-reportar-um-bug))
 
 ---

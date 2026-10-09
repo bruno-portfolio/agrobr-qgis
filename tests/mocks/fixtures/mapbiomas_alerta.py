@@ -31,7 +31,7 @@ _DATA = {
         "DETER",
         "SIRAD",
     ],
-    "detected_at": pd.to_datetime(
+    "data_deteccao": pd.to_datetime(
         [
             "2026-03-01 08:30:00",
             "2026-03-03 14:15:00",

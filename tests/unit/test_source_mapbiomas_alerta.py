@@ -7,6 +7,7 @@ import geopandas as gpd
 import pandas as pd
 import pytest
 
+from agrobr_qgis.core.auth_manager import AuthManager
 from agrobr_qgis.core.data_contract import DataContract
 from agrobr_qgis.core.registry import SourceRegistry
 from agrobr_qgis.core.source_adapter import SourceCapability, SourceCategory
@@ -21,6 +22,7 @@ def _register_mapbiomas_alerta(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setitem(sys.modules, "agrobr", MagicMock())
     monkeypatch.setitem(sys.modules, "agrobr.sync", mock_module)
     monkeypatch.setitem(sys.modules, "agrobr.sync.mapbiomas_alerta", mock_mapbiomas_alerta)
+    monkeypatch.setattr(AuthManager, "get_token", lambda _source_id: None)
     from agrobr_qgis.sources.mapbiomas_alerta import AlertasSource
 
     SourceRegistry.register(AlertasSource)
@@ -54,7 +56,7 @@ class TestAlertasSource:
     def test_auth_env_var(self) -> None:
         src = SourceRegistry.get("mapbiomas_alertas")
         assert src is not None
-        assert src.auth_env_var() == "MAPBIOMAS_TOKEN"
+        assert src.auth_env_var() == "AGROBR_MAPBIOMAS_ALERTA_TOKEN"
 
     def test_fetch_returns_dataframe(self) -> None:
         src_cls = SourceRegistry.get("mapbiomas_alertas")

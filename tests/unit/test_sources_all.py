@@ -7,6 +7,7 @@ from unittest.mock import MagicMock
 import pandas as pd
 import pytest
 
+from agrobr_qgis.core.auth_manager import AuthManager
 from agrobr_qgis.core.registry import SourceRegistry
 from agrobr_qgis.core.source_adapter import SourceCapability, SourceCategory
 
@@ -32,6 +33,7 @@ _SYNC_MODULES = [m for m in _SOURCE_MODULES if m not in ("sicar", "mapbiomas_cob
 
 @pytest.fixture(autouse=True)
 def _register_all_sources(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(AuthManager, "get_token", lambda _source_id: None)
     mock = MagicMock()
     monkeypatch.setitem(sys.modules, "agrobr", mock)
     monkeypatch.setitem(sys.modules, "agrobr.sync", mock)

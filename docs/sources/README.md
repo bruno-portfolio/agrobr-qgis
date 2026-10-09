@@ -77,7 +77,7 @@ Uma fonte requer token de API:
 
 | Fonte | Variável | Onde obter |
 |-------|----------|------------|
-| Alertas (MapBiomas) | `MAPBIOMAS_TOKEN` | [plataforma.alerta.mapbiomas.org](https://plataforma.alerta.mapbiomas.org) |
+| Alertas (MapBiomas) | `AGROBR_MAPBIOMAS_ALERTA_TOKEN` | [plataforma.alerta.mapbiomas.org](https://plataforma.alerta.mapbiomas.org) |
 
 Para configurar: dock agrobr > **Configurações** > aba **Tokens**.
 

@@ -24,6 +24,8 @@ _BIOMAS = [
     "Pantanal",
 ]
 
+_DETER_BIOMAS = ["Amazônia", "Cerrado"]
+
 
 @SourceRegistry.register
 class DeterSource(SourceAdapter):
@@ -33,7 +35,7 @@ class DeterSource(SourceAdapter):
 
     @classmethod
     def temporal_column(cls) -> str | None:
-        return "data_deteccao"
+        return "data"
 
     @classmethod
     def source_url(cls) -> str | None:
@@ -71,7 +73,7 @@ class DeterSource(SourceAdapter):
                 name="bioma",
                 label="Bioma",
                 param_type=ParamType.CHOICE,
-                choices=_BIOMAS,
+                choices=_DETER_BIOMAS,
             ),
             SourceParameter(
                 name="uf",
@@ -79,12 +81,12 @@ class DeterSource(SourceAdapter):
                 param_type=ParamType.UF,
             ),
             SourceParameter(
-                name="data_inicio",
+                name="inicio",
                 label="Data início",
                 param_type=ParamType.DATE,
             ),
             SourceParameter(
-                name="data_fim",
+                name="fim",
                 label="Data fim",
                 param_type=ParamType.DATE,
             ),
@@ -136,14 +138,9 @@ class ProdesSource(SourceAdapter):
                 param_type=ParamType.UF,
             ),
             SourceParameter(
-                name="data_inicio",
-                label="Data início",
-                param_type=ParamType.DATE,
-            ),
-            SourceParameter(
-                name="data_fim",
-                label="Data fim",
-                param_type=ParamType.DATE,
+                name="ano",
+                label="Ano",
+                param_type=ParamType.INT,
             ),
         ]
 

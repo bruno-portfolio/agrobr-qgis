@@ -20,7 +20,7 @@ Imóveis rurais do Cadastro Ambiental Rural.
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | uf | UF | Sim | Unidade da Federação |
-| municipio | Texto | Não | Nome do município |
+| municipio | Texto | Não | Nome inteiro ou código IBGE do município |
 | status | Texto | Não | Status do imóvel no CAR |
 | tipo | Texto | Não | Tipo do imóvel |
 
@@ -51,7 +51,7 @@ Resumo estatístico do CAR por município/UF.
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
 | uf | UF | Sim | Unidade da Federação |
-| municipio | Texto | Não | Nome do município |
+| municipio | Texto | Não | Nome inteiro ou código IBGE do município |
 
 ### Capacidades
 

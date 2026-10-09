@@ -49,8 +49,8 @@ class DemandaIrrigacaoSource(SourceAdapter):
                 required=True,
             ),
             SourceParameter(
-                name="max_features",
-                label="Max features",
+                name="max_registros",
+                label="Máx. registros",
                 param_type=ParamType.INT,
             ),
         ]
@@ -91,8 +91,8 @@ class DisponibilidadeHidricaSource(SourceAdapter):
                 param_type=ParamType.BBOX,
             ),
             SourceParameter(
-                name="max_features",
-                label="Max features",
+                name="max_registros",
+                label="Máx. registros",
                 param_type=ParamType.INT,
             ),
         ]
@@ -136,8 +136,8 @@ class HidrografiaSource(SourceAdapter):
                 required=True,
             ),
             SourceParameter(
-                name="max_features",
-                label="Max features",
+                name="max_registros",
+                label="Máx. registros",
                 param_type=ParamType.INT,
             ),
         ]
@@ -181,8 +181,8 @@ class PivosIrrigacaoSource(SourceAdapter):
                 param_type=ParamType.BBOX,
             ),
             SourceParameter(
-                name="max_features",
-                label="Max features",
+                name="max_registros",
+                label="Máx. registros",
                 param_type=ParamType.INT,
             ),
         ]

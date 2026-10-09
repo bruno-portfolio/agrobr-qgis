@@ -13,10 +13,10 @@ Alertas de desmatamento em tempo real (INPE/DETER).
 
 | Parâmetro | Tipo | Obrigatório | Descrição |
 |-----------|------|:-----------:|-----------|
-| bioma | Escolha | Não | Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa, Pantanal |
+| bioma | Escolha | Não | Amazônia ou Cerrado (os biomas que o DETER publica) |
 | uf | UF | Não | Filtrar por estado |
-| data_inicio | Data | Não | Data inicial do período |
-| data_fim | Data | Não | Data final do período |
+| inicio | Data | Não | Data inicial do período |
+| fim | Data | Não | Data final do período |
 
 ## Capacidades
 
@@ -49,8 +49,7 @@ Desmatamento anual por corte raso (INPE/PRODES).
 |-----------|------|:-----------:|-----------|
 | bioma | Escolha | Não | Amazônia, Cerrado, Mata Atlântica, Caatinga, Pampa, Pantanal |
 | uf | UF | Não | Filtrar por estado |
-| data_inicio | Data | Não | Data inicial do período |
-| data_fim | Data | Não | Data final do período |
+| ano | Inteiro | Não | Ano do PRODES |
 
 ## Capacidades
 

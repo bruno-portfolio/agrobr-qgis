@@ -4,6 +4,7 @@ from typing import Any
 
 import pandas as pd
 
+from agrobr_qgis.core.auth_manager import AuthManager
 from agrobr_qgis.core.registry import SourceRegistry
 from agrobr_qgis.core.source_adapter import (
     ParamType,
@@ -24,7 +25,7 @@ class AlertasSource(SourceAdapter):
 
     @classmethod
     def temporal_column(cls) -> str | None:
-        return "detected_at"
+        return "data_deteccao"
 
     @classmethod
     def source_url(cls) -> str | None:
@@ -55,18 +56,18 @@ class AlertasSource(SourceAdapter):
 
     @classmethod
     def auth_env_var(cls) -> str | None:
-        return "MAPBIOMAS_TOKEN"
+        return "AGROBR_MAPBIOMAS_ALERTA_TOKEN"
 
     @classmethod
     def parameters(cls) -> list[SourceParameter]:
         return [
             SourceParameter(
-                name="start_date",
+                name="inicio",
                 label="Data início",
                 param_type=ParamType.DATE,
             ),
             SourceParameter(
-                name="end_date",
+                name="fim",
                 label="Data fim",
                 param_type=ParamType.DATE,
             ),
@@ -76,8 +77,8 @@ class AlertasSource(SourceAdapter):
                 param_type=ParamType.BBOX,
             ),
             SourceParameter(
-                name="limit",
-                label="Limite",
+                name="max_registros",
+                label="Máx. registros",
                 param_type=ParamType.INT,
                 default=100,
             ),
@@ -86,6 +87,9 @@ class AlertasSource(SourceAdapter):
     def fetch(self, *, geo: bool = False, **kwargs: Any) -> pd.DataFrame:
         from agrobr.sync import mapbiomas_alerta  # type: ignore[import-untyped]
 
+        token = AuthManager.get_token(self.id())
+        if token:
+            kwargs["token"] = token
         result: pd.DataFrame = (
             mapbiomas_alerta.alertas_geo(**kwargs) if geo else mapbiomas_alerta.alertas(**kwargs)
         )

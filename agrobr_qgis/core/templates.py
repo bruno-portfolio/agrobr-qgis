@@ -93,7 +93,7 @@ TemplateRegistry.register(
                 required=True,
                 help_text="Ex: SOJA, MILHO",
                 bindings=(
-                    ParamBinding("zarc_zoneamento", "cultura"),
+                    ParamBinding("zarc_zoneamento", "produto"),
                     ParamBinding("ibge_pam", "produto", transform=str.capitalize),
                 ),
             ),

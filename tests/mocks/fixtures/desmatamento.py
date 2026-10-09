@@ -7,7 +7,7 @@ from shapely.geometry import Point, Polygon
 __all__ = ["make_desmatamento_df", "make_desmatamento_gdf"]
 
 _DATA = {
-    "data_deteccao": pd.to_datetime(
+    "data": pd.to_datetime(
         [
             "2026-03-01",
             "2026-03-03",

@@ -1,9 +1,8 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - "v*"
+  release:
+    types: [published]
 
 jobs:
   release:
@@ -21,6 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
+          TAG=${GITHUB_REF#refs/tags/}
+          VERSION=${TAG#v}
           qgis-plugin-ci package $VERSION
-          qgis-plugin-ci release $VERSION --github-token $GITHUB_TOKEN --create-plugin-repo
+          qgis-plugin-ci release $VERSION --release-tag $TAG --github-token $GITHUB_TOKEN --create-plugin-repo

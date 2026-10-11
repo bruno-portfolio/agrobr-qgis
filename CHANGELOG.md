@@ -5,6 +5,14 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [0.2.1] - 2026-10-10
+
+### Fixed
+- Achados do scan de segurança do plugins.qgis.org, que bloqueou a 0.2.0, sem mudança de comportamento:
+  `assert` de tipo trocados por checagem explícita; `except` silencioso na checagem de versão; o
+  `subprocess` do pip do auto-instalador e o download das malhas (só `https`) marcados como revisados
+  (`# nosec`); os SHA-256 públicos das malhas do IBGE marcados como não-segredo
+
 ## [0.2.0] - 2026-10-09
 
 ### Changed

@@ -18,8 +18,12 @@ UF_MESH_URL: str = (
     "malhas_territoriais/malhas_municipais/municipio_2022/"
     "Brasil/BR/BR_UF_2022.zip"
 )
-MUNICIPAL_MESH_SHA256: str = "9c904fa1feb978a89042bfecd7758e571266f285d6122a4ff02ffe37bffb76a2"
-UF_MESH_SHA256: str = "282ec7f0f0beeeead45e6609f4ffffce161bda04cb8ee0afcad2316d1c841bcb"
+MUNICIPAL_MESH_SHA256: str = (
+    "9c904fa1feb978a89042bfecd7758e571266f285d6122a4ff02ffe37bffb76a2"  # pragma: allowlist secret
+)
+UF_MESH_SHA256: str = (
+    "282ec7f0f0beeeead45e6609f4ffffce161bda04cb8ee0afcad2316d1c841bcb"  # pragma: allowlist secret
+)
 
 DTYPE_MAP: dict[str, str] = {
     "int64": "LongLong",

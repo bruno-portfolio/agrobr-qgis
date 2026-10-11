@@ -57,7 +57,9 @@ class LayerBuilder:
         style_path: str | None = None,
     ) -> Any:
         if result.has_geometry:
-            assert isinstance(result.df, gpd.GeoDataFrame)
+            if not isinstance(result.df, gpd.GeoDataFrame):
+                msg = "Resultado com geometria precisa ser um GeoDataFrame"
+                raise TypeError(msg)
             if cls._should_use_gpkg(result):
                 return cls._via_gpkg(result.df, layer_name, style_path)
             return cls._via_memory(result.df, layer_name, style_path, result.geometry_type)

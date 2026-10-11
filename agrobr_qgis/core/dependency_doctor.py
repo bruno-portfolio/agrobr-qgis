@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import importlib
 import site
-import subprocess
+import subprocess  # nosec B404  # só o pip do auto-instalador, com argumentos fixos
 import sys
 import threading
 from collections.abc import Callable
@@ -79,7 +79,7 @@ class DependencyDoctor:
                     message=f"agrobr {status.version} desatualizado (mínimo {MIN_AGROBR_VERSION})",
                 )
         except Exception:
-            pass
+            return status
         return status
 
     @classmethod
@@ -105,7 +105,7 @@ class DependencyDoctor:
             if sys.platform == "win32":
                 startupinfo = subprocess.STARTUPINFO()
                 startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-            subprocess.check_call(
+            subprocess.check_call(  # nosec B603  # pip com argumentos fixos; pacote em _ALLOWED_PACKAGES
                 cls._pip_command(),
                 timeout=120,
                 startupinfo=startupinfo,

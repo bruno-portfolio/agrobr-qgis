@@ -83,7 +83,7 @@ class SpatialJoin:
             msg = f"URL insegura rejeitada: {url}"
             raise ValueError(msg)
         sha = hashlib.sha256()
-        with urllib.request.urlopen(url, timeout=120) as response, dest.open("wb") as f:  # noqa: S310
+        with urllib.request.urlopen(url, timeout=120) as response, dest.open("wb") as f:  # noqa: S310  # nosec B310  # só https, checado acima
             while chunk := response.read(65_536):
                 f.write(chunk)
                 sha.update(chunk)

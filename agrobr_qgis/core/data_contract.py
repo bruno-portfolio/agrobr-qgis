@@ -71,8 +71,7 @@ class DataContract:
         geometry_type = None
         estimated_vertices = 0
 
-        if has_geometry:
-            assert isinstance(data, gpd.GeoDataFrame)
+        if isinstance(data, gpd.GeoDataFrame):
             if data.crs is None:
                 data = data.set_crs(DEFAULT_CRS)
                 warnings.append(f"CRS ausente, assumido {DEFAULT_CRS}")
